@@ -33,8 +33,21 @@ height: 8%;
     padding: 0px 60px;
 }
 
+.pc-card-img {
+    height: 310px;      
 
 
+
+
+}
+.blog-card-para {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+   .our-story {
+                            margin: 90px 0px 150px 0px;
+                    }
 
 }
 
@@ -82,9 +95,7 @@ height: 8%;
 
                     }
 
-                    .our-story {
-                            margin: 100px 0px 150px 0px;
-                    }
+                 
 
                     .small-heading {
                         font-size: 20px;
@@ -99,6 +110,23 @@ height: 8%;
                     .our-story {
                         gap: 35px;
                     }
+
+                    .blog-card-para {
+   
+    margin-bottom: 20px;
+}
+
+.blog-card-img {
+    height: 250px;  
+}
+.pc-footer {
+    margin-top: 115px;
+}
+
+.project-border {
+    margin-top: 50px;
+}
+                    
 
                
 
@@ -123,6 +151,17 @@ height: 8%;
                         .services-img {
                             height: 520px;
                         }
+                        .blog {
+                            flex-direction: column;
+                            gap: 40px;
+                        }
+                        .blog-card {
+                            width: 100%;
+                        }
+                            .blog-card-img {
+                                height: auto;
+                            }
+                            
 
                 }
 
@@ -220,8 +259,10 @@ h1 {
                     font-size: 40px;
                 }
                 .services {
-                    gap: 20px;
-                    padding-bottom: 105px;
+                    gap: 15px;
+                    padding-bottom: 80px;
+
+                    
                 }
 
                 .all-heading {
@@ -241,6 +282,26 @@ h1 {
                     width: 100%;
 
                 }
+                .pc-footer-cta {
+                    font-size: 12px;
+                }
+                    .our-story {
+                        margin: 50px 0px 80px 0px;
+                    }
+                    .full-video {
+                        margin-bottom: 70px;
+                    }
+                    .events-section-parent {
+                        margin: 70px 0px;
+                    }
+                    .blog-section-parent {
+                        margin: 70px 0px;
+                    }
+
+
+
+
+
 
 
 
@@ -291,7 +352,7 @@ height: 10%;
     }
 
         .heading {
-            font-size: 35px;
+            font-size: 37px;
         }
 
 
@@ -307,11 +368,12 @@ height: 10%;
                 .full-video {
                     height: 70vh;
                 }
-
-                    .services {
+                       .services {
                 
-                    padding-bottom: 80px;
+                    padding-bottom: 60px;
                 }
+
+             
 
                  .all-heading {
                     margin-bottom: 45px;
@@ -320,11 +382,62 @@ height: 10%;
                         line-height: 23px;
                 }
                     .small-heading {
-                        font-size: 17px;
+                        font-size: 18px;
                     }
-                    .txt-btn p {
-                        font-size: 13px;
+                 
+                    .para{
+                        font-size: 14px;
                     }
+                        .short-heading {
+                            font-size: 32px;
+                        }
+
+                        .pc-card-title h3 {
+                            font-size: 23px;
+                        }
+
+                        .pc-card-num {
+                            font-size: 22px;
+                        }
+.pc-card-body {
+    padding: 10px      
+}
+
+.pc-controls {
+    margin-top: auto;
+}
+.pc-btn {
+    height: 35px;
+    width: 35px;
+}
+
+.blog-card-heading h3 {
+    font-size: 23px;
+}
+.blog-card-txt {
+    padding: 10px;
+}
+
+.blog-card-logo {
+    height: 40px;
+    width: 40px;    
+}
+
+    .blog {
+        gap: 26px;
+    }
+
+    .pc-footer {
+    margin-top: 75px;
+}
+
+.project-border {
+    margin-top: 40px;
+}
+
+  
+
+
 
 
 
