@@ -137,3 +137,7 @@ $(document).ready(function () {
 
 
 
+// about us page
+
+
+

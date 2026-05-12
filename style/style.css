@@ -268,7 +268,7 @@
     z-index: 2;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    /* height: 100%; */
     padding: 2.5rem 3rem;
   }
 
@@ -298,6 +298,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 0.15rem;
+    padding-bottom: 1.4rem;
   }
 
   .offcanvas-nav li {
@@ -524,7 +525,7 @@
    }
 
    .nav-mid {
-       width: 60%;
+       width: 65%;
        
        display: flex;
        justify-content: center;
@@ -535,7 +536,7 @@
     align-items: center;
 
 
-       width: 20%;
+       width: 15%;
        gap: 15px;
        /* background-color: pink; */
        gap: 35px;
@@ -597,7 +598,7 @@ height: 33px;
   width: 100%;
 }
    .nav-logo{
-    width: 130px;
+    width: 140px;
   
    }
    .nav-logo img{

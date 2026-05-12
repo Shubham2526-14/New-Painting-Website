@@ -185,6 +185,12 @@ height: 8%;
 
 
                 @media (max-width: 768px) {
+
+                    .nav-logo {
+                        width: 126px;
+                    }
+
+
                         .services-img {
                             height: 520px;
                         }
@@ -233,6 +239,7 @@ height: 8%;
                                             .footer-logo p {
                                                max-width: 100%;
                                             }
+                                            
 
 
 
@@ -256,7 +263,7 @@ height: 8%;
 
 @media (max-width: 576px) {
      .navbar {
-height: 12%;
+height: 10%;
 }
 
 .navbar {
@@ -435,9 +442,7 @@ h1 {
     .nav-right {
         gap: 21px;
     }
-        .navbar {
-height: 10%;        
-        }
+
 
             .hero-section {
         height: 72%;
