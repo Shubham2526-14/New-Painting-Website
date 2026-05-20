@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+  <!-- Site CSS (already has all variables, nav, footer styles) -->
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/media.css">
+
+  <style>
+    /* ─── HERO (same pattern as about.html hero) ─── */
+    .hero {
+      background-image:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,0.9) 0%,
+          rgba(0,0,0,0.3) 50%,
+          rgba(0,0,0,0.0) 100%
+        ),
+        url(./images/Photos/0U5A6664.webp);
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-flx {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      height: 72vh;
+      padding-bottom: 100px;
+    }
+    .hero-heading h2 {
+      font-size: 80px;
+      color: var(--heading2-color);
+      border-bottom: 2px solid var(--logo-color);
+    }
+    .hero-sub-txt {
+      font-size: 18px;
+      color: var(--heading2-color);
+      max-width: 380px;
+      opacity: 0.65;
+      line-height: 1.7;
+      margin-bottom: 6px;
+      font-weight: 300;
+    }
+
+    /* ─── CONTACT SECTION WRAPPER ─── */
+    .contact-parent {
+      margin-top: 80px;
+      margin-bottom: 150px;
+    }
+
+    /* ─── TWO COLUMN GRID ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    /* ─── LEFT COLUMN ─── */
+    .contact-left-col {}
+
+
+
+    .contact-main-heading {
+      font-size: 60px;
+      font-weight: 300;
+      color: var(--heading-color);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+
+    .contact-intro-para {
+      margin-bottom: 45px;
+    }
+
+    /* info blocks */
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 20px;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .info-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+
+    .info-icon-wrap {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--logo-color);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.8;
+    }
+    .info-icon-wrap svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--logo-color);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .info-content h5 {
+      font-size: 16px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      
+    }
+    .info-content p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--heading-color);
+      opacity: 0.72;
+      line-height: 1.75;
+    }
+
+    /* social row */
+    .contact-social-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 55px;
+    }
+    .contact-social-row a {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(1, 1, 1, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .contact-social-row a:hover {
+      border-color: var(--logo-color);
+    }
+    .contact-social-row svg {
+      width: 14px;
+      height: 14px;
+      stroke: rgba(0, 0, 0, 0.5);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.3s;
+    }
+    .contact-social-row a:hover svg { stroke: var(--logo-color); }
+
+    /* ─── FORM ─── */
+    .form-section-heading {
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--heading2-color);
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+    .form-section-heading span { color: var(--logo-color); }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 50px;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .form-grp {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .form-grp label {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(17, 17, 17, 0.45);
+      font-weight: 400;
+    }
+    .form-grp input,
+    .form-grp textarea,
+    .form-grp select {
+      background: rgba(255,255,255,0.04);
+      border: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+      color: var(--heading-color);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 300;
+      padding: 12px 0;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+      resize: none;
+    }
+    .form-grp input:focus,
+    .form-grp textarea:focus,
+    .form-grp select:focus {
+      border-bottom-color: var(--logo-color);
+    }
+    .form-grp input::placeholder,
+    .form-grp textarea::placeholder {
+      color: rgba(255,255,255,0.2);
+    }
+    .form-grp select option { background: #1a1410; }
+    .form-grp textarea { min-height: 120px; padding-top: 10px; }
+
+    /* submit button — same gold outline style as the rest of site */
+    .btn-submit {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      background: transparent;
+      border: 1px solid var(--logo-color);
+      color: var(--logo-color);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.35s;
+    }
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--logo-color);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(.77,0,.18,1);
+      z-index: 0;
+    }
+    .btn-submit:hover::before { transform: translateX(0); }
+    .btn-submit:hover { color: #0d0d0d; }
+    .btn-submit span, .btn-submit svg { position: relative; z-index: 1; }
+    .btn-submit svg {
+      width: 15px; height: 15px;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+      transition: transform 0.3s;
+    }
+    .btn-submit:hover svg { transform: translateX(5px); }
+
+    .form-success-msg {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border: 1px solid var(--logo-color);
+      margin-top: 8px;
+    }
+    .form-success-msg.show { display: flex; }
+    .form-success-msg svg { width: 20px; height: 20px; stroke: var(--logo-color); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+    .form-success-msg p { font-size: 15px; font-weight: 300; opacity: 0.8; }
+
+    /* ─── RIGHT COLUMN – Map ─── */
+    .contact-right-col {
+      position: sticky;
+      top: 100px;
+    }
+
+
+    .map-container {
+      width: 100%;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(25%);
+    }
+    .map-overlay-badge {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      background: rgba(255, 255, 255, 0.88);
+      border-left: 3px solid var(--logo-color);
+      padding: 14px 18px;
+      backdrop-filter: blur(8px);
+    }
+    .map-overlay-badge h5 {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--logo-color);
+      margin-bottom: 5px;
+    }
+    .map-overlay-badge p {
+      font-size: 13px;
+      font-weight: 300;
+      opacity: 0.75;
+      line-height: 1.7;
+    }
+
+    /* hours */
+    .hours-title {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--logo-color);
+      margin: 30px 0 14px;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .hours-row:first-of-type { border-top: 1px solid rgba(255,255,255,0.07); }
+    .hours-day { font-size: 15px; font-weight: 300; opacity: 0.7; }
+    .hours-time { font-size: 14px; color: var(--logo-color); letter-spacing: 0.04em; }
+    .hours-closed {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--logo-color);
+      color: #0d0d0d;
+      padding: 3px 9px;
+      font-weight: 500;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1050px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+      .contact-right-col { position: static; }
+      .map-container { height: 380px; }
+      .hero-flx { height: 40vh; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-heading h2 { font-size: 60px; }
+      .hero-flx { padding-bottom: 70px; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 14px; height: 55vh; }
+      .contact-parent { margin-top: 50px; margin-bottom: 100px; }
+    }
+
+    @media (max-width: 576px) {
+      .hero-heading h2 { font-size: 44px; }
+      .hero-flx { height: 52vh; padding-bottom: 55px; }
+      .form-row-2 { grid-template-columns: 1fr; }
+      .contact-parent { margin-top: 35px; margin-bottom: 80px; }
+      .map-container { height: 300px; }
+      .contact-grid { gap: 45px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-heading h2 { font-size: 36px; }
+      .contact-main-heading { font-size: 32px; }
+      .btn-submit { padding: 12px 26px; font-size: 12px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- OVERLAY -->
+  <div class="offcanvas-overlay" id="offcanvasOverlay" aria-hidden="true"></div>
+
+  <!-- OFFCANVAS PANEL — exact copy from about.html -->
+  <nav class="offcanvas" id="offcanvas" aria-label="Site navigation" aria-hidden="true">
+    <div class="offcanvas-bg-logo" aria-hidden="true">
+      <img src="./images/logo.png" alt="">
+    </div>
+    <div class="offcanvas-inner">
+      <p class="offcanvas-eyebrow">Navigation</p>
+      <div class="offcanvas-divider"></div>
+      <ul class="offcanvas-nav" role="list">
+        <li><a href="./index.html"><span class="nav-num">01</span>Home</a></li>
+        <li><a href="./about.html"><span class="nav-num">02</span>About</a></li>
+        <li><a href="#"><span class="nav-num">03</span>Services</a></li>
+        <li><a href="#"><span class="nav-num">04</span>Projects</a></li>
+        <li><a href="#"><span class="nav-num">05</span>Media &amp; Publications</a></li>
+        <li><a href="#"><span class="nav-num">06</span>Blogs</a></li>
+        <li><a href="./contact.html"><span class="nav-num">07</span>Contact</a></li>
+      </ul>
+      <footer class="offcanvas-footer">
+        <address class="footer-address" style="font-style: normal;">
+          Studio 14, Heritage Arts Complex<br>
+          Regal Building, M.G. Road<br>
+          Mumbai – 400 001, India
+        </address>
+        <div class="footer-supported">
+          <span class="footer-supported-label">Supported by</span>
+          <span class="footer-supported-name">Tata Trusts</span>
+        </div>
+      </footer>
+    </div>
+  </nav>
+
+
+  <!-- navbar — exact copy from about.html -->
+  <div class="bg-img">
+
+    <nav class="navbar">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <a href="./index.html"><img src="./images/logo2.png" alt=""></a>
+        </div>
+      </div>
+      <div class="nav-mid">
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="">Services</a></li>
+          <li><a href="">Projects</a></li>
+          <li><a href="">Media &amp; Publications</a></li>
+          <li><a href="">Blogs</a></li>
+          <li><a href="./contact.html" class="active">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <div class="tata-img">
+          <h4>Supported By </h4>
+          <img src="./images/tata.png" alt="">
+        </div>
+        <div class="menu-bar">
+          <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- hero section — same structure as about.html -->
+    <header class="hero">
+      <div class="padding">
+        <div class="hero-flx">
+          <div class="hero-heading">
+            <h2>Contact Us</h2>
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+ 
+
+
+  <!-- ══════════════════════════════
+       CONTACT MAIN SECTION
+  ══════════════════════════════ -->
+  <section class="contact-parent">
+    <div class="padding">
+      <div class="contact-grid">
+
+        <!-- LEFT — info + form -->
+        <div class="contact-left-col">
+
+          <h2 class="heading">Let's Start a<br><em>Conversation</em></h2>
+          <div class="contact-intro-para">
+            <p class="para">Whether you have a restoration project in mind, want to learn about our conservation process, or simply wish to visit the studio — we are always here to help.</p>
+          </div>
+
+          <!-- Info items -->
+          <div class="info-list">
+
+            <div class="info-item">
+              <div class="info-icon-wrap">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="info-content">
+                <h5 class="heading">Address</h5>
+                <p>Studio 14, Heritage Arts Complex<br>Regal Building, M.G. Road<br>Mumbai – 400 001, India</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon-wrap">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10a19.8 19.8 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div class="info-content">
+                <h5>Phone</h5>
+                <p>+001 234 56 78<br>Mon – Sat, 9:00 am – 8:00 pm</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon-wrap">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="info-content">
+                <h5>Email</h5>
+                <p>hello@studio.in<br>conservation@studio.in</p>
+              </div>
+            </div>
+
+          </div><!-- /info-list -->
+
+          <!-- Social -->
+          <div class="contact-social-row">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+            </a>
+          </div>
+
+          <!-- Form -->
+          <h3 class="heading">Send Us a <span>Message</span></h3>
+          <form class="contact-form" id="contactForm" novalidate>
+
+            <div class="form-row-2">
+              <div class="form-grp">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" placeholder="Your first name" required>
+              </div>
+              <div class="form-grp">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" placeholder="Your last name">
+              </div>
+            </div>
+
+            <div class="form-grp">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-grp">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="+91 00000 00000">
+            </div>
+
+            <div class="form-grp">
+              <label for="subject">Subject</label>
+              <select id="subject">
+                <option value="" disabled selected>Select a subject</option>
+                <option>Restoration Enquiry</option>
+                <option>Studio Visit</option>
+                <option>Collaboration</option>
+                <option>Media &amp; Press</option>
+                <option>General Question</option>
+              </select>
+            </div>
+
+            <div class="form-grp">
+              <label for="message">Your Message</label>
+              <textarea id="message" placeholder="Tell us about your project or enquiry…" required></textarea>
+            </div>
+
+                 <button class="bookmarkBtn">
+  <span class="IconContainer">
+<img src="./images/svg logo.svg" alt="">
+  </span>
+  <p class="text">Send Message</p>
+</button>
+
+            <div class="form-success-msg" id="successMsg">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              <p>Thank you! We've received your message and will get back to you shortly.</p>
+            </div>
+
+          </form>
+
+        </div><!-- /contact-left-col -->
+
+
+        <!-- RIGHT — Map -->
+        <div class="contact-right-col">
+
+
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.957977226569!2d72.82843231489637!3d18.940120687168256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1c06fffffff%3A0x40f8eb17f6a2c0d8!2sMahatma%20Gandhi%20Road%2C%20Fort%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1621234567890!5m2!1sen!2sin"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Studio Location">
+            </iframe>
+            <div class="map-overlay-badge">
+              <h5>Our Studio</h5>
+              <p>Heritage Arts Complex<br>Regal Building, M.G. Road<br>Mumbai – 400 001</p>
+            </div>
+          </div>
+
+          <!-- Hours -->
+          <p class="hours-title">Working Hours</p>
+          <div class="hours-row">
+            <span class="hours-day">Monday – Friday</span>
+            <span class="hours-time">9:00 am – 8:00 pm</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Saturday</span>
+            <span class="hours-time">10:00 am – 5:00 pm</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Sunday</span>
+            <span class="hours-closed">Closed</span>
+          </div>
+
+        </div><!-- /contact-right-col -->
+
+      </div><!-- /contact-grid -->
+    </div><!-- /padding -->
+  </section>
+
+
+  <!-- footer — exact copy from about.html -->
+  <footer class="footer-space">
+    <div class="footer-parent">
+      <div class="padding-footer">
+        <div class="footer">
+          <div class="footer-logo">
+            <img src="./images/logo.png" alt="">
+            <p class="para">
+              The Institute of conservation (ICON)<br>
+              International Council of Museum (ICOM)<br>
+              IASC India
+            </p>
+          </div>
+          <div class="footer-contact">
+            <h4>CONTACT US:</h4>
+            <p class="para">3 Rockaway St., New Rochelle,<br>New York, United States – 10801</p>
+            <p class="para">Mon-Sat: 9:00am – 8pm</p>
+            <p class="para">+001 234 56 78</p>
+          </div>
+          <div class="footer-qr-parent">
+            <h4>DONATION:</h4>
+            <div class="footer-qr">
+              <img src="./images/qr.png" alt="">
+            </div>
+          </div>
+          <div class="footer-insta">
+            <h4>SOCIAL MEDIA:</h4>
+            <div class="footer-social-media">
+              <img src="./images/facebook.png" alt="">
+              <img src="./images/instagram.png" alt="">
+              <img src="./images/linkdine.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom-txt">
+          <span class="date">© My Company, 2026. All rights reserved.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts — same as about.html -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="./javascript/script.js"></script>
+
+  <script>
+    /* form submit */
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg   = document.getElementById('message').value.trim();
+      if (!fname || !email || !msg) {
+        ['fname','email','message'].forEach(id => {
+          const el = document.getElementById(id);
+          if (!el.value.trim()) {
+            el.style.borderBottomColor = '#c0392b';
+            el.addEventListener('input', () => el.style.borderBottomColor = '', { once: true });
+          }
+        });
+        return;
+      }
+      const btn = this.querySelector('.btn-submit');
+      btn.disabled = true;
+      btn.querySelector('span').textContent = 'Sending…';
+      setTimeout(() => {
+        document.getElementById('successMsg').classList.add('show');
+        btn.style.display = 'none';
+        this.reset();
+      }, 1100);
+    });
+
+    /* GSAP scroll animations */
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.contact-main-heading', { opacity: 0, y: 35, duration: 1, ease: 'power3.out', delay: 0.15 });
+    gsap.from('.info-item', {
+      opacity: 0, x: -25, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: '.info-list', start: 'top 82%' }
+    });
+    gsap.from('.map-container', {
+      opacity: 0, y: 30, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: '.map-container', start: 'top 85%' }
+    });
+    gsap.from('.hours-row', {
+      opacity: 0, x: 20, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.hours-row', start: 'top 88%' }
+    });
+  </script>
+
+</body>
+</html>
