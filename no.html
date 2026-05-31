@@ -1,580 +1,1038 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Team Section</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARC Studio — Art Restoration & Conservation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Nunito+Sans:opsz,wght@6..12,200..1000&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
   <style>
     :root {
-      --bg:       #0c0c0f;
-      --surface:  #13131a;
-      --border:   rgba(255,255,255,0.07);
-      --accent1:  #c8f04a;   /* electric lime */
-      --accent2:  #ff5c3a;   /* coral-red */
-      --accent3:  #5be7ff;   /* ice blue */
-      --text:     #f0f0f0;
-      --muted:    #6b6b7a;
-      --card-w:   300px;
-      --card-h:   420px;
-      --shift:    52px;       
+      --bg-color: #fef8db;
+      --logo-color: #d5a749;
+      --heading-color: #0c0c0c;
+      --heading2-color: #ffffff;
+      --para-color: #565656;
+      --nav-color: #262321d9;
+      --light-color: #565656;
+      --card-color: #f2f2f2;
+      --manu-color: #1a1610;
+      --canvas-duration: 0.72s;
+      --ease-out-expo: cubic-bezier(0.16,1,0.3,1);
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, ul, li, ol, p, h1, h2, h3, h4, h5, h6 { margin:0; padding:0; box-sizing:border-box; }
+    h1,h2,h3,h4,h5,h6 { color:var(--heading-color); font-family:'Cormorant Garamond',serif; font-style:italic; }
+    a { text-decoration:none; }
+    button { font-family:'Nunito Sans',sans-serif; }
+    body { background-color:var(--bg-color); font-family:'Nunito Sans',sans-serif; overflow:hidden; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      overflow-x: hidden;
-      min-height: 100vh;
+    /* ── FULLPAGE ── */
+    #fp-wrapper {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
     }
-
-    /* ═══════════════════════════
-       SECTION SHELL
-    ═══════════════════════════ */
-    .team-section {
+    .fp-section {
+      height: 100vh;
       width: 100%;
-      padding: 100px 0 120px;
+      scroll-snap-align: start;
       position: relative;
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
     }
 
-    /* big decorative bg text */
-    .team-section::before {
-      content: 'TEAM';
-      position: absolute;
+    /* ── DOT NAV ── */
+    #dot-nav {
+      position: fixed;
+      right: 22px;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(160px, 22vw, 340px);
-      color: rgba(255,255,255,0.018);
-      letter-spacing: 0.06em;
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    /* ── Header ── */
-    .team-header {
-      text-align: center;
-      margin-bottom: 72px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .team-eyebrow {
-      display: inline-flex;
-      align-items: center;
+      transform: translateY(-50%);
+      z-index: 9000;
+      display: flex;
+      flex-direction: column;
       gap: 10px;
-      font-size: 10px;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 18px;
     }
-    .team-eyebrow span {
-      width: 32px;
-      height: 1px;
-      background: var(--accent1);
-      display: inline-block;
-    }
-
-    .team-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(52px, 7vw, 96px);
-      letter-spacing: 0.03em;
-      line-height: 0.92;
-      color: var(--text);
-    }
-
-    .team-title em {
-      font-style: normal;
-      -webkit-text-stroke: 1.5px var(--accent1);
-      color: transparent;
-    }
-
-    .team-subtitle {
-      margin-top: 20px;
-      font-size: 14px;
-      color: var(--muted);
-      font-weight: 300;
-      letter-spacing: 0.02em;
-    }
-
-    /* ═══════════════════════════
-       CAROUSEL WRAPPER
-    ═══════════════════════════ */
-    .carousel-outer {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* overflow hidden but we add vertical padding so staggered cards aren't clipped */
-    .carousel-viewport {
-      overflow: hidden;
-      padding: var(--shift) 0 calc(var(--shift) + 20px);
-    }
-
-    .carousel-track {
-      display: flex;
-      gap: 22px;
-      padding: 0 calc((100vw - var(--card-w) * 3 - 22px * 2) / 2);
-      transition: transform 0.65s cubic-bezier(0.77, 0, 0.18, 1);
-      will-change: transform;
-    }
-
-    /* ═══════════════════════════
-       CARD
-    ═══════════════════════════ */
-    .team-card {
-      flex: 0 0 var(--card-w);
-      width: var(--card-w);
-      height: var(--card-h);
-      border-radius: 24px;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  box-shadow 0.45s ease;
-      /* Stagger: even-indexed cards shift down */
-    }
-
-    /* odd → normal, even → shifted down */
-    .team-card:nth-child(even) {
-      margin-top: var(--shift);
-    }
-    .team-card:nth-child(odd) {
-      margin-bottom: var(--shift);
-    }
-
-    .team-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 30px 70px rgba(0,0,0,0.6);
-    }
-
-    /* photo layer */
-    .card-photo {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(20%) contrast(1.05);
-      transition: filter 0.4s ease, transform 0.6s ease;
-    }
-    .team-card:hover .card-photo {
-      filter: grayscale(0%) contrast(1.1);
-      transform: scale(1.06);
-    }
-
-    /* gradient overlay */
-    .card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(8,8,12,0.97) 0%,
-        rgba(8,8,12,0.5)  45%,
-        rgba(8,8,12,0.05) 100%
-      );
-    }
-
-    /* accent stripe — each card gets a colour via data attr */
-    .card-stripe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      border-radius: 24px 0 0 24px;
-    }
-    .team-card[data-accent="lime"]  .card-stripe { background: var(--accent1); }
-    .team-card[data-accent="coral"] .card-stripe { background: var(--accent2); }
-    .team-card[data-accent="ice"]   .card-stripe { background: var(--accent3); }
-
-    /* number badge */
-    .card-num {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      color: rgba(255,255,255,0.25);
-    }
-
-    /* bottom content */
-    .card-body {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 28px 24px 26px;
-    }
-
-    .card-role {
-      font-size: 9.5px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .team-card[data-accent="lime"]  .card-role { color: var(--accent1); }
-    .team-card[data-accent="coral"] .card-role { color: var(--accent2); }
-    .team-card[data-accent="ice"]   .card-role { color: var(--accent3); }
-
-    .card-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      letter-spacing: 0.04em;
-      line-height: 1;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-
-    .card-bio {
-      font-size: 12px;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.45);
-      font-weight: 300;
-    }
-
-    /* social links */
-    .card-socials {
-      display: flex;
-      gap: 12px;
-      margin-top: 16px;
-    }
-    .card-socials a {
-      width: 30px;
-      height: 30px;
+    .dot-item {
+      width: 10px; height: 10px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: border-color 0.3s, background 0.3s;
-    }
-    .team-card[data-accent="lime"]  .card-socials a:hover { border-color: var(--accent1); background: rgba(200,240,74,0.12); }
-    .team-card[data-accent="coral"] .card-socials a:hover { border-color: var(--accent2); background: rgba(255,92,58,0.12); }
-    .team-card[data-accent="ice"]   .card-socials a:hover { border-color: var(--accent3); background: rgba(91,231,255,0.12); }
-    .card-socials svg {
-      width: 13px;
-      height: 13px;
-      fill: rgba(255,255,255,0.5);
-    }
-
-    /* ═══════════════════════════
-       CONTROLS
-    ═══════════════════════════ */
-    .carousel-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 56px;
-    }
-
-    .ctrl-btn {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
+      border: 1.5px solid var(--logo-color);
+      background: transparent;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s, border-color 0.3s, transform 0.2s;
-      outline: none;
+      transition: all 0.3s ease;
+      position: relative;
     }
-    .ctrl-btn:hover {
-      background: var(--accent1);
-      border-color: var(--accent1);
-      color: #000;
-      transform: scale(1.08);
-    }
-    .ctrl-btn:hover svg { stroke: #000; }
-    .ctrl-btn svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: stroke 0.3s;
-    }
-    .ctrl-btn:disabled {
-      opacity: 0.25;
-      cursor: default;
-      transform: none;
+    .dot-item.active { background: var(--logo-color); transform: scale(1.3); }
+    .dot-item:hover::after {
+      content: attr(data-label);
+      position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+      background: var(--manu-color); color: #fff;
+      font-size: 11px; font-family: 'Nunito Sans', sans-serif;
+      letter-spacing: 0.05em; padding: 4px 10px; border-radius: 4px; white-space: nowrap;
     }
 
-    /* dot indicators */
-    .ctrl-dots {
-      display: flex;
-      gap: 8px;
-      align-items: center;
+    /* ── OFFCANVAS ── */
+    .offcanvas-overlay {
+      position: fixed; inset: 0;
+      background: rgba(10,8,5,0.65);
+      z-index: 1000; opacity: 0; visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      backdrop-filter: blur(2px);
     }
-    .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 3px;
-      background: var(--muted);
-      transition: width 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.35s;
+    .offcanvas-overlay.is-open { opacity: 1; visibility: visible; }
+
+    .offcanvas {
+      position: fixed; top: 0; right: 0;
+      width: min(480px,100vw); height: 100vh;
+      background: var(--manu-color); z-index: 1050; overflow: hidden;
+      transform: translateX(100%);
+      transition: transform var(--canvas-duration) var(--ease-out-expo);
+      display: flex; flex-direction: column;
+    }
+    .offcanvas.is-open { transform: translateX(0); }
+
+    .offcanvas-bg-logo {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .offcanvas-bg-logo img { width: 80%; opacity: 0.06; filter: blur(5px); object-fit: contain; }
+
+    .offcanvas-inner { position: relative; z-index: 2; display: flex; flex-direction: column; padding: 2.5rem 3rem; }
+
+    .offcanvas-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; letter-spacing: 0.25em; color: var(--logo-color); text-transform: uppercase;
+      opacity: 0; transform: translateY(-10px);
+      transition: opacity 0.45s ease 0.18s, transform 0.45s var(--ease-out-expo) 0.18s;
+      margin-bottom: 0.4rem;
+    }
+    .offcanvas.is-open .offcanvas-eyebrow { opacity: 1; transform: translateY(0); }
+
+    .offcanvas-divider {
+      height: 0.5px;
+      background: linear-gradient(to right, transparent, var(--logo-color), transparent);
+      margin: 1.4rem 0; opacity: 0; transform: scaleX(0);
+      transition: opacity 0.5s, transform 0.6s var(--ease-out-expo);
+      transform-origin: left;
+    }
+    .offcanvas.is-open .offcanvas-divider { opacity: 1; transform: scaleX(1); transition-delay: 0.35s; }
+
+    .offcanvas-nav { list-style: none; flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0.15rem; padding-bottom: 1.4rem; }
+    .offcanvas-nav li { overflow: hidden; }
+    .offcanvas-nav a {
+      display: flex; align-items: baseline; gap: 0.9rem;
+      text-decoration: none; color: var(--heading2-color);
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: clamp(1.7rem,3.5vw,2.1rem); letter-spacing: 0.04em;
+      padding: 0.45rem 0; position: relative;
+      transform: translateY(60px); opacity: 0;
+      transition: color 0.3s, transform 0.55s var(--ease-out-expo), opacity 0.45s;
+    }
+    .offcanvas-nav a .nav-num { font-weight: 200; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--logo-color); opacity: 0.7; align-self: center; }
+    .offcanvas-nav a:hover { color: var(--logo-color); }
+    .offcanvas.is-open .offcanvas-nav a { transform: translateY(0); opacity: 1; }
+    .offcanvas.is-open .offcanvas-nav li:nth-child(1) a { transition-delay: 0.22s; }
+    .offcanvas.is-open .offcanvas-nav li:nth-child(2) a { transition-delay: 0.28s; }
+    .offcanvas.is-open .offcanvas-nav li:nth-child(3) a { transition-delay: 0.34s; }
+    .offcanvas.is-open .offcanvas-nav li:nth-child(4) a { transition-delay: 0.40s; }
+    .offcanvas.is-open .offcanvas-nav li:nth-child(5) a { transition-delay: 0.46s; }
+    .offcanvas.is-open .offcanvas-nav li:nth-child(6) a { transition-delay: 0.52s; }
+    .offcanvas.is-open .offcanvas-nav li:nth-child(7) a { transition-delay: 0.58s; }
+
+    .offcanvas-footer {
+      border-top: 0.5px solid rgba(184,149,63,0.2); padding-top: 1.4rem;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s 0.7s, transform 0.5s var(--ease-out-expo) 0.7s;
+    }
+    .offcanvas.is-open .offcanvas-footer { opacity: 1; transform: translateY(0); }
+    .footer-address { font-weight: 300; font-size: 12px; color: #f5f0e89e; letter-spacing: 0.06em; line-height: 1.9; text-transform: uppercase; margin-bottom: 1rem; }
+    .footer-supported { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-supported-label { font-weight: 200; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #f5f0e89e; }
+    .footer-supported-name { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--logo-color); text-transform: uppercase; border: 0.5px solid rgba(184,149,63,0.4); padding: 3px 10px; border-radius: 2px; }
+
+    /* ── MENU TOGGLE ── */
+    .menu-toggle {
+      background: none; border: none; cursor: pointer; padding: 8px;
+      display: flex; flex-direction: column; gap: 5px;
+      position: relative; z-index: 1100;
+    }
+    .menu-toggle span {
+      display: block; width: 28px; height: 1.5px; background-color: var(--heading-color);
+      transition: transform 0.45s var(--ease-out-expo), opacity 0.3s, width 0.4s var(--ease-out-expo);
+      transform-origin: center;
+    }
+    .menu-toggle span:nth-child(2) { width: 20px; }
+    .menu-toggle.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); width: 28px; }
+    .menu-toggle.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .menu-toggle.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); width: 28px; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 12vh;
+      flex-shrink: 0;
+    }
+    .nav-left { width: 20%; }
+    .nav-mid { width: 65%; display: flex; justify-content: center; }
+    .nav-right { display: flex; align-items: center; width: 15%; gap: 35px; justify-content: flex-end; }
+    .menu-bar { display: none; align-items: center; }
+    .nav-logo { width: 200px; }
+    .nav-logo img { height: 100%; width: 100%; object-fit: cover; }
+    .nav-mid ul { display: flex; list-style: none; gap: 35px; align-items: center; font-size: 18px; }
+    .nav-mid a { color: var(--heading-color); position: relative; }
+    .nav-mid ul a::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 0%; height: 2px; background: var(--logo-color); transition: width 0.3s ease; }
+    .nav-mid ul a:hover::after { width: 100%; }
+    .nav-mid ul a.active::after { width: 100%; }
+
+    .tata-img { display: flex; justify-content: end; position: relative; flex-direction: column; align-items: flex-end; }
+    .tata-img p { font-size: 14px; text-align: end; font-style: normal; font-family: 'Nunito Sans', sans-serif; }
+    .tata-img img { width: 110px; height: auto; margin-top: 2px; }
+
+    /* ── SECTION 1: HERO ── */
+    #sec-hero { background: var(--bg-color); }
+    .hero-section {
+      background-image: url('images/Photos/0U5A6670.webp');
+      flex: 1; background-size: cover; background-position: center;
+    }
+    .hero-black-div {
+      height: 100%; width: 100%;
+      background-color: rgba(0,0,0,0.274);
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 40px;
+    }
+    h1 { color: var(--heading2-color); font-size: 70px; text-align: center; }
+    .hero-heading h4 { color: var(--heading2-color); font-size: 27px; text-align: center; }
+
+    /* ── SECTION 2: ABOUT ── */
+    #sec-about { background: var(--bg-color); }
+    .about-section {
+      flex: 1; display: flex; align-items: center;
+    }
+    .padding { padding: 0 5%; max-width: 1375px; margin: auto; width: 100%; }
+    .our-story { display: flex; gap: 45px; align-items: center; height: 100%; }
+    .our-story-left { width: 50%; }
+    .our-story-right { width: 50%; display: flex; align-items: center; }
+    .our-story-img img { height: 100%; width: 100%; object-fit: cover; border-radius: 10px; }
+    .our-story-img { max-height: 70vh; overflow: hidden; }
+    .our-story-img img { max-height: 70vh; }
+    .heading { color: var(--heading-color); font-size: 60px; }
+    .para { font-size: 16px; color: var(--para-color); line-height: 28px; }
+    .our-story-para { margin: 35px 0 40px 0; }
+    .para-padding { margin-top: 20px; }
+
+    /* bookmarkBtn — EXACT original */
+    .bookmarkBtn {
+      width: fit-content; padding: 9px 10px; border-radius: 40px;
+      border: none; background-color: var(--logo-color);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition-duration: 0.3s; overflow: hidden; position: relative;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08), 0 8px 25px rgba(213,167,73,0.35);
+      transition: all 0.3s ease; margin-left: 9px;
+    }
+    .IconContainer {
+      width: 30px; background-color: var(--bg-color);
+      border-radius: 50px; display: flex; align-items: center; justify-content: center;
+      overflow: hidden; z-index: 2; transition-duration: 0.3s;
+      position: absolute; left: 2%;
+    }
+    .IconContainer img { height: 30px; object-fit: cover; }
+    .text {
+      height: 100%; width: 100%; display: flex; align-items: center; justify-content: center;
+      color: white; z-index: 1; transition-duration: 0.3s; font-size: 1em; margin-left: 30px;
+    }
+    .bookmarkBtn:hover .IconContainer { width: 96%; transition-duration: 0.3s; left: 2.1%; }
+    .bookmarkBtn:active { transform: scale(0.95); transition-duration: 0.3s; }
+
+    /* txt-btn — EXACT original */
+    .txt-btn { padding: 0; margin: 0; border: none; background: none; cursor: pointer; --primary-color: #d5a749; --hovered-color: #d5a749; position: relative; display: flex; gap: 0.4rem; align-items: center; }
+    .txt-btn p { margin: 0; position: relative; font-size: 14px; color: var(--primary-color); }
+    .txt-btn::after { position: absolute; content: ""; width: 0; left: 0; bottom: -7px; background: var(--hovered-color); height: 1.5px; transition: 0.3s ease-out; }
+    .txt-btn p::before { position: absolute; content: ""; width: 0%; inset: 0; color: var(--hovered-color); overflow: hidden; transition: 0.3s ease-out; }
+    .txt-btn:hover::after { width: 100%; }
+    .txt-btn:hover p::before { width: 100%; }
+    .txt-btn:hover svg { transform: translateX(6px); color: var(--hovered-color); }
+    .txt-btn svg { color: var(--primary-color); transition: 0.2s; position: relative; width: 15px; transition-delay: 0.2s; }
+
+    /* ── SECTION 3: SERVICES ── */
+    #sec-services { background: var(--bg-color); }
+    .services-section-top {
+      padding-top: 80px; /* space so heading not hidden by nav */
+      flex-shrink: 0;
+    }
+    .all-heading { display: flex; justify-content: center; margin-bottom: 30px; }
+    .services-heading { text-align: center; }
+    .short-heading { font-size: 50px; }
+
+    .services-inner { flex: 1; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+    .services-wrap { display: flex; flex-direction: column; gap: 0; }
+
+    .service-row { display: flex; gap: 45px; align-items: center; padding: 28px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .service-row:last-child { border-bottom: none; }
+    .service-row-text { width: 50%; display: flex; flex-direction: column; justify-content: center; }
+    .service-row-img { width: 50%; }
+    .service-row-img-box { height: 240px; overflow: hidden; border-radius: 8px; }
+    .service-row-img-box img { height: 100%; width: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .service-row:hover .service-row-img-box img { transform: scale(1.04); }
+    .service-para { margin: 18px 0 24px; }
+    .service-para p { font-size: 15px; color: var(--para-color); line-height: 1.75; }
+
+    .services-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid #929292; margin-top: 8px; flex-shrink: 0; }
+    .pc-footer-cta { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; letter-spacing: 2px; background: none; border: none; border-bottom: 1px solid var(--heading-color); padding-bottom: 2px; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+    .pc-footer-cta:hover { color: var(--logo-color); border-color: var(--logo-color); }
+
+    /* ── SECTION 4: MEDIA ── */
+    #sec-media { background: var(--bg-color); }
+    .media-section-inner {
+      flex: 1; display: flex; flex-direction: column; justify-content: center;
+      padding-top: 40px;
+    }
+
+    .events-heading { margin-bottom: 30px; }
+    .event-section { display: flex; gap: 40px; flex: 1; }
+    .event-left { width: 50%; display: flex; flex-direction: column; }
+    .event-right { width: 50%; display: flex; flex-direction: column; gap: 0; }
+    .event-left-img { flex: 1; overflow: hidden; border-radius: 8px; }
+    .event-left-img img { height: 100%; width: 100%; object-fit: cover; }
+    .event-left .event-card { padding-top: 16px; }
+    .small-heading { font-size: 23px; margin: 9px 0; }
+    .event-card h5 { color: var(--logo-color); font-size: 15px; }
+    .date { font-size: 13px; color: var(--light-color); }
+    .event-card-img { display: flex; gap: 25px; padding-bottom: 22px; border-bottom: 1px solid #929292; }
+    .event-card-parnet { width: 70%; }
+    .event-right-img { width: 30%; overflow: hidden; border-radius: 4px; }
+    .event-right-img img { height: 100%; width: 100%; object-fit: cover; }
+    .event-right .event-card-img:last-child { border-bottom: none; padding-bottom: 0; }
+    .event-button button { margin-top: 18px; }
+    .event-section .txt-btn { font-weight: 600; }
+
+    .media-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid #929292; margin-top: 20px; flex-shrink: 0; }
+
+    /* ── SECTION 5: PROJECTS ── */
+    #sec-projects { background: var(--bg-color); }
+    .projects-section-top { padding-top: 60px; flex-shrink: 0; }
+    .projects-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+    .pc-root { }
+    .pc-owl-wrap { overflow: visible; }
+    .owl-carousel .owl-stage-outer { overflow: hidden !important; padding-bottom: 30px !important; }
+
+    .pc-card {
+      background-color: var(--card-color); border: 1px solid #ede8df; border-radius: 6px; overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08), 0 5px 10px rgba(0,0,0,0.05);
       cursor: pointer;
     }
-    .dot.active {
-      width: 22px;
-      background: var(--accent1);
-    }
+    .pc-card:hover { transform: translateY(-10px) scale(1.03); }
+    .pc-card-img { width: 100%; height: 300px; overflow: hidden; position: relative; border-top-right-radius: 15px; border-top-left-radius: 15px; }
+    .pc-card-img img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .pc-card:hover .pc-card-img img { transform: scale(1.05); }
+    .pc-gold-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 3; }
+    .pc-card-overlay { position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 16px; z-index: 2; background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.2), transparent); }
+    .pc-card:hover .pc-card-overlay { opacity: 1; }
+    .pc-overlay-link { color: var(--heading2-color); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; border-bottom: 1px solid var(--logo-color); padding-bottom: 3px; transform: translateY(20px); opacity: 0; transition: all 0.4s ease; }
+    .pc-card:hover .pc-overlay-link { transform: translateY(0); opacity: 1; }
+    .pc-card-body { position: relative; padding: 16px 18px 20px; }
+    .pc-card-title h3 { font-size: 22px; position: relative; display: inline-block; transition: color 0.3s; }
+    .pc-card-title h3::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0%; height: 1.5px; background: var(--logo-color); transition: width 0.4s; }
+    .pc-card:hover .pc-card-title h3 { color: var(--logo-color); }
+    .pc-card:hover .pc-card-title h3::after { width: 100%; }
+    .pc-card-desc p { font-size: 13px; color: var(--para-color); line-height: 1.6; }
+    .pc-card-tag span { font-size: 11px; color: var(--logo-color); letter-spacing: 0.1em; }
+    .pc-card-num { font-size: 28px; font-weight: 300; color: var(--logo-color); line-height: 1; }
+    .pc-card-button { display: flex; justify-content: end; margin-top: 10px; }
+    .owl-item.center .pc-card { transform: scale(1.06); opacity: 1; box-shadow: 0 20px 60px rgba(126,91,19,0.18), 0 4px 16px rgba(0,0,0,0.10); }
+    .owl-nav, .owl-dots { display: none !important; }
 
-    /* ═══════════════════════════
-       RESPONSIVE
-    ═══════════════════════════ */
-    @media (max-width: 1024px) {
-      :root { --card-w: 270px; }
+    .pc-controls { display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 12px; }
+    .pc-btn { width: 44px; height: 44px; border-radius: 50%; background: transparent; border: 1px solid #d6cfc3; color: #2a2018; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s, transform 0.15s; }
+    .pc-btn:hover { background: #f5f0e8; border-color: #b5a990; }
+    .pc-btn:active { transform: scale(0.93); }
+    .pc-btn svg { width: 16px; height: 16px; }
+
+    .pc-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid #929292; margin-top: 16px; }
+
+    /* ── SECTION 6: BLOGS ── */
+    #sec-blogs { background: var(--bg-color); }
+    .blogs-section-top { padding-top: 60px; flex-shrink: 0; }
+    .blogs-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+    .blog { display: flex; gap: 20px; }
+    .blog-card {
+      width: 33%; background-color: var(--card-color); padding: 8px; border-radius: 20px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08), 0 5px 10px rgba(0,0,0,0.05);
     }
-    @media (max-width: 720px) {
-      :root { --card-w: 260px; --card-h: 380px; --shift: 36px; }
-      .carousel-track { padding: 0 28px; }
+    .blog-card:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 14px 28px rgba(0,0,0,0.10), 0 6px 12px rgba(0,0,0,0.06); }
+    .blog-card-img { height: 220px; position: relative; }
+    .blog-card-img .card-img { height: 100%; width: 100%; object-fit: cover; border-radius: 20px; }
+    .blog-card-logo { padding: 5px; height: 45px; width: 45px; border-radius: 50%; position: absolute; background-color: rgb(233,233,233); bottom: -5%; left: 7%; display: flex; justify-content: center; align-items: center; }
+    .blog-card-logo img { height: 100%; width: 100%; margin-bottom: 3px; object-fit: cover; }
+    .blog-card-txt { padding: 20px 10px 10px 10px; }
+    .blog-card-para { margin-top: 7px; margin-bottom: 20px; }
+    .blog-card-author { display: flex; align-items: center; gap: 10px; }
+    .author-img { height: 40px; width: 40px; }
+    .author-img img { height: 100%; width: 100%; border-radius: 50%; object-fit: cover; }
+    .author-name-color { color: var(--heading-color); font-weight: 600; }
+    .blog-card-heading h3 { font-size: 22px; position: relative; display: inline-block; transition: color 0.3s; }
+    .blog-card-heading h3::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0%; height: 1.5px; background: var(--logo-color); transition: width 0.4s; }
+    .blog-card:hover .blog-card-heading h3 { color: var(--logo-color); }
+    .blog-card:hover .blog-card-heading h3::after { width: 100%; }
+
+    .blogs-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid #929292; margin-top: 20px; flex-shrink: 0; }
+
+    /* ── SECTION 7: FOOTER ── */
+    #sec-footer { background: var(--bg-color); justify-content: flex-end; }
+    .footer-space { padding: 0 40px; }
+    .padding-footer { padding: 0 50px; margin: auto; }
+    .footer-parent {
+      padding: 50px 0 20px; background-color: var(--card-color);
+      border-top-left-radius: 30px; border-top-right-radius: 30px;
+      box-shadow: rgba(0,0,0,0.078) 0 18px 20px 17px;
     }
-    @media (max-width: 480px) {
-      :root { --card-w: 230px; --card-h: 340px; }
-      .carousel-track { padding: 0 20px; }
+    .footer { display: flex; justify-content: space-between; }
+    .footer-logo { display: flex; flex-direction: column; justify-content: space-between; }
+    .footer-logo img { height: 130px; }
+    .footer h4 { margin-bottom: 25px; font-size: 20px; color: var(--logo-color); }
+    .footer-contact { display: flex; flex-direction: column; justify-content: center; }
+    .footer-contact ul li { list-style: none; margin-bottom: 5px; }
+    .footer-contact ul li { font-size: 18px; }
+    .footer-contact ul li a { color: black; }
+    .footer-social-media { display: flex; gap: 12px; }
+    .footer-social-media img { height: 21px; }
+    .footer-qr-parent h4 { text-align: center; }
+    .footer-qr { height: 150px; }
+    .footer-qr img { height: 100%; width: 100%; object-fit: cover; }
+    .footer-bottom-txt { display: flex; justify-content: center; margin-top: 0; }
+
+    /* ── FOOTER SPACER IN SECTION 7 ── */
+    .footer-spacer {
+      flex: 1; display: flex; align-items: center; justify-content: center;
     }
+    .footer-tagline { text-align: center; }
+    .footer-tagline h2 { font-size: clamp(32px, 4vw, 56px); margin-bottom: 12px; }
+    .footer-tagline p { font-size: 16px; color: var(--para-color); max-width: 480px; margin: 0 auto; }
   </style>
 </head>
 <body>
 
-<section class="team-section">
-  <div class="team-header">
-    <p class="team-eyebrow"><span></span> The Humans Behind It <span></span></p>
-    <h2 class="team-title">Meet The<br/><em>Visionaries</em></h2>
-    <p class="team-subtitle">Crafted by obsessives. Driven by curiosity. Fuelled by coffee.</p>
+<!-- OFFCANVAS OVERLAY -->
+<div class="offcanvas-overlay" id="offcanvasOverlay"></div>
+
+<!-- OFFCANVAS PANEL -->
+<nav class="offcanvas" id="offcanvasPanel" aria-label="Site navigation">
+  <div class="offcanvas-bg-logo" aria-hidden="true">
+    <img src="./images/logo.png" alt="">
   </div>
+  <div class="offcanvas-inner">
+    <p class="offcanvas-eyebrow">Navigation</p>
+    <div class="offcanvas-divider"></div>
+    <ul class="offcanvas-nav" role="list">
+      <li><a href="#" onclick="scrollToSection(0);closeMenu();return false;"><span class="nav-num">01</span>Home</a></li>
+      <li><a href="#" onclick="scrollToSection(1);closeMenu();return false;"><span class="nav-num">02</span>About</a></li>
+      <li><a href="#" onclick="scrollToSection(2);closeMenu();return false;"><span class="nav-num">03</span>Services</a></li>
+      <li><a href="#" onclick="scrollToSection(3);closeMenu();return false;"><span class="nav-num">04</span>Media &amp; Publications</a></li>
+      <li><a href="#" onclick="scrollToSection(4);closeMenu();return false;"><span class="nav-num">05</span>Projects</a></li>
+      <li><a href="#" onclick="scrollToSection(5);closeMenu();return false;"><span class="nav-num">06</span>Blogs</a></li>
+      <li><a href="#" onclick="scrollToSection(6);closeMenu();return false;"><span class="nav-num">07</span>Contact</a></li>
+    </ul>
+    <footer class="offcanvas-footer">
+      <address class="footer-address" style="font-style:normal;">
+        Studio 14, Heritage Arts Complex<br>
+        Regal Building, M.G. Road<br>
+        Mumbai – 400 001, India
+      </address>
+      <div class="footer-supported">
+        <span class="footer-supported-label">Supported by</span>
+        <span class="footer-supported-name">Tata Trusts</span>
+      </div>
+    </footer>
+  </div>
+</nav>
 
-  <div class="carousel-outer">
-    <div class="carousel-viewport">
-      <div class="carousel-track" id="track">
+<!-- DOT NAVIGATOR -->
+<nav id="dot-nav" aria-label="Page sections">
+  <div class="dot-item active" data-section="0" data-label="Home" tabindex="0" role="button"></div>
+  <div class="dot-item" data-section="1" data-label="About" tabindex="0" role="button"></div>
+  <div class="dot-item" data-section="2" data-label="Services" tabindex="0" role="button"></div>
+  <div class="dot-item" data-section="3" data-label="Media" tabindex="0" role="button"></div>
+  <div class="dot-item" data-section="4" data-label="Projects" tabindex="0" role="button"></div>
+  <div class="dot-item" data-section="5" data-label="Blogs" tabindex="0" role="button"></div>
+  <div class="dot-item" data-section="6" data-label="Contact" tabindex="0" role="button"></div>
+</nav>
 
-        <!-- Card 1 -->
-        <div class="team-card" data-accent="lime">
-          <img class="card-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85" alt="Arjun Mehta"/>
-          <div class="card-overlay"></div>
-          <div class="card-stripe"></div>
-          <span class="card-num">01</span>
-          <div class="card-body">
-            <p class="card-role">Chief Executive</p>
-            <h3 class="card-name">Arjun Mehta</h3>
-            <p class="card-bio">Turns wild ideas into products people actually use. Formerly broke, now building.</p>
-            <div class="card-socials">
-              <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-              <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+<!-- ════ FULLPAGE WRAPPER ════ -->
+<div id="fp-wrapper">
+
+  <!-- ══ SECTION 1: HERO ══ -->
+  <section class="fp-section" id="sec-hero">
+    <!-- NAVBAR inside this section, not fixed -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <a href="#"><img src="./images/logo2.png" alt="ARC Studio"></a>
+        </div>
+      </div>
+      <div class="nav-mid">
+        <ul>
+          <li><a href="#" class="active" onclick="scrollToSection(0);return false;">Home</a></li>
+          <li><a href="#" onclick="scrollToSection(1);return false;">About</a></li>
+          <li><a href="#" onclick="scrollToSection(2);return false;">Services</a></li>
+          <li><a href="#" onclick="scrollToSection(4);return false;">Projects</a></li>
+          <li><a href="#" onclick="scrollToSection(3);return false;">Media &amp; Publications</a></li>
+          <li><a href="#" onclick="scrollToSection(5);return false;">Blogs</a></li>
+          <li><a href="#" onclick="scrollToSection(6);return false;">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <div class="tata-img">
+          <p>Supported By</p>
+          <img class="tata-trust" src="./images/tata.png" alt="Tata Trusts">
+        </div>
+        <div class="menu-bar" style="display:flex;">
+          <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero image -->
+    <header class="hero-section">
+      <div class="hero-black-div">
+        <div class="hero-heading">
+          <h1>Art Restoration &amp; Conservation Studio</h1>
+        </div>
+      </div>
+    </header>
+  </section>
+
+  <!-- ══ SECTION 2: ABOUT ══ -->
+  <section class="fp-section" id="sec-about">
+    <div class="about-section">
+      <div class="padding w-100">
+        <div class="our-story">
+          <div class="our-story-left">
+            <div class="our-story-heading">
+              <h2 class="heading">Our Story</h2>
+            </div>
+            <div class="our-story-para">
+              <p class="para">
+                Founded in 2014, ARC Resources and Services is a fully-equipped private studio that provides highly skilled and efficient services in the field of art conservation. The ARC stands for Art Restoration and Conservation, and particularly takes care of an extensive range of art objects such as paintings, works on paper, sculpture, miniature paintings, prints, written media and contemporary materials.
+              </p>
+            </div>
+            <div class="our-story-button">
+              <button class="bookmarkBtn">
+                <span class="IconContainer"><img src="./images/svg logo.svg" alt=""></span>
+                <p class="text">Read More</p>
+              </button>
+            </div>
+          </div>
+          <div class="our-story-right">
+            <div class="our-story-img">
+              <img src="./images/Photos/F4.webp" alt="ARC Studio">
             </div>
           </div>
         </div>
-
-        <!-- Card 2 -->
-        <div class="team-card" data-accent="coral">
-          <img class="card-photo" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85" alt="Sofia Reyes"/>
-          <div class="card-overlay"></div>
-          <div class="card-stripe"></div>
-          <span class="card-num">02</span>
-          <div class="card-body">
-            <p class="card-role">Creative Director</p>
-            <h3 class="card-name">Sofia Reyes</h3>
-            <p class="card-bio">Pixels are her love language. Believes every border-radius is a moral decision.</p>
-            <div class="card-socials">
-              <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-              <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="team-card" data-accent="ice">
-          <img class="card-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=85" alt="Leo Braun"/>
-          <div class="card-overlay"></div>
-          <div class="card-stripe"></div>
-          <span class="card-num">03</span>
-          <div class="card-body">
-            <p class="card-role">Lead Engineer</p>
-            <h3 class="card-name">Leo Braun</h3>
-            <p class="card-bio">Writes code that reads like poetry. Debugging is just a form of meditation to him.</p>
-            <div class="card-socials">
-              <a href="#"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
-              <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="team-card" data-accent="coral">
-          <img class="card-photo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=85" alt="Mia Chen"/>
-          <div class="card-overlay"></div>
-          <div class="card-stripe"></div>
-          <span class="card-num">04</span>
-          <div class="card-body">
-            <p class="card-role">Growth & Strategy</p>
-            <h3 class="card-name">Mia Chen</h3>
-            <p class="card-bio">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.</p>
-            <div class="card-socials">
-              <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-              <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="team-card" data-accent="lime">
-          <img class="card-photo" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&q=85" alt="Ravi Santos"/>
-          <div class="card-overlay"></div>
-          <div class="card-stripe"></div>
-          <span class="card-num">05</span>
-          <div class="card-body">
-            <p class="card-role">Product Design</p>
-            <h3 class="card-name">Ravi Santos</h3>
-            <p class="card-bio">Obsessed with the 0.001s of delight. Every interaction should feel like magic.</p>
-            <div class="card-socials">
-              <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-              <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="team-card" data-accent="ice">
-          <img class="card-photo" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=600&q=85" alt="Zara Klein"/>
-          <div class="card-overlay"></div>
-          <div class="card-stripe"></div>
-          <span class="card-num">06</span>
-          <div class="card-body">
-            <p class="card-role">Head of Marketing</p>
-            <h3 class="card-name">Zara Klein</h3>
-            <p class="card-bio">Tells brand stories that spread. Half data scientist, half storyteller, fully unstoppable.</p>
-            <div class="card-socials">
-              <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
-              <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /track -->
-    </div><!-- /viewport -->
-
-    <!-- Controls -->
-    <div class="carousel-controls">
-      <button class="ctrl-btn" id="prevBtn" aria-label="Previous">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-
-      <div class="ctrl-dots" id="dots"></div>
-
-      <button class="ctrl-btn" id="nextBtn" aria-label="Next">
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- ══ SECTION 3: SERVICES ══ -->
+  <section class="fp-section" id="sec-services">
+    <div class="services-section-top">
+      <div class="padding">
+        <div class="all-heading">
+          <div class="services-heading">
+            <h2 class="heading" style="text-align:center;">Our Services</h2>
+            <p class="para" style="text-align:center;">Meet the heart of our studio — a collective of passionate conservators</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-inner">
+      <div class="padding">
+        <div class="services-wrap">
+
+          <!-- Service 1 -->
+          <div class="service-row">
+            <div class="service-row-text">
+              <h3 class="short-heading">Art Restoration</h3>
+              <div class="service-para">
+                <p class="para">Meticulous restoration of damaged, aged, or deteriorated artworks back to their original beauty using internationally recognised conservation standards.</p>
+              </div>
+              <div class="services-button">
+                <button class="bookmarkBtn">
+                  <span class="IconContainer"><img src="./images/svg logo.svg" alt=""></span>
+                  <p class="text">Read More</p>
+                </button>
+              </div>
+            </div>
+            <div class="service-row-img">
+              <div class="service-row-img-box">
+                <img src="./images/Photos/0U5A6666.webp" alt="Art Restoration">
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-row">
+            <div class="service-row-img">
+              <div class="service-row-img-box">
+                <img src="./images/Photos/0U5A6660.webp" alt="Preventive Conservation">
+              </div>
+            </div>
+            <div class="service-row-text">
+              <h3 class="short-heading">Preventive Conservation</h3>
+              <div class="service-para">
+                <p class="para">Long-term strategies to protect artworks from environmental damage, humidity fluctuations, and biological threats before they cause irreversible harm.</p>
+              </div>
+              <div class="services-button">
+                <button class="bookmarkBtn">
+                  <span class="IconContainer"><img src="./images/svg logo.svg" alt=""></span>
+                  <p class="text">Read More</p>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="services-footer">
+          <span></span>
+          <button class="pc-footer-cta">View All Services &nbsp;→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SECTION 4: MEDIA & PUBLICATIONS ══ -->
+  <section class="fp-section" id="sec-media">
+    <div class="media-section-inner">
+      <div class="padding">
+
+        <div class="events-heading">
+          <div class="all-heading">
+            <div class="services-heading">
+              <h2 class="heading" style="text-align:center;">Media &amp; Publications</h2>
+              <p class="para" style="text-align:center;">Meet the heart of our studio — a collective of passionate conservators</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-section">
+          <!-- LEFT big card -->
+          <div class="event-left">
+            <div class="event-left-img">
+              <img src="./images/Photos/SL_Opening_202243.webp" alt="">
+            </div>
+            <div class="event-card">
+              <h5>Painting</h5>
+              <h3 class="small-heading">Lorem ipsum dolor sit amet consectetur</h3>
+              <span class="date">27 March 2026</span>
+              <div class="event-button">
+                <button class="txt-btn">
+                  <p>Subscribe</p>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT stacked cards -->
+          <div class="event-right">
+            <div class="event-card-img">
+              <div class="event-card-parnet">
+                <div class="event-card">
+                  <h5>Painting</h5>
+                  <h3 class="small-heading">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h3>
+                  <span class="date">27 March 2026</span>
+                  <div class="event-button">
+                    <button class="txt-btn">
+                      <p>Subscribe</p>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:15px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="event-right-img"><img src="./images/Photos/0U5A6535.webp" alt=""></div>
+            </div>
+
+            <div class="event-card-img">
+              <div class="event-card-parnet">
+                <div class="event-card">
+                  <h5>Painting</h5>
+                  <h3 class="small-heading">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h3>
+                  <span class="date">27 March 2026</span>
+                  <div class="event-button">
+                    <button class="txt-btn">
+                      <p>Subscribe</p>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:15px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="event-right-img"><img src="./images/Photos/0U5A5305.webp" alt=""></div>
+            </div>
+
+            <div class="event-card-img">
+              <div class="event-card-parnet">
+                <div class="event-card">
+                  <h5>Painting</h5>
+                  <h3 class="small-heading">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h3>
+                  <span class="date">27 March 2026</span>
+                  <div class="event-button">
+                    <button class="txt-btn">
+                      <p>Subscribe</p>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:15px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="event-right-img"><img src="./images/Photos/0U5A6660.webp" alt=""></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="media-footer">
+          <span></span>
+          <button class="pc-footer-cta">View All Media &nbsp;→</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SECTION 5: PROJECTS ══ -->
+  <section class="fp-section" id="sec-projects">
+    <div class="projects-section-top">
+      <div class="padding">
+        <div class="all-heading">
+          <div class="services-heading">
+            <h2 class="heading" style="text-align:center;">Our Projects</h2>
+            <p class="para" style="text-align:center;">Every painting tells a story — we bring that story back to life</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="projects-inner">
+      <div class="padding">
+        <div class="pc-owl-wrap">
+          <div class="owl-carousel owl-theme" id="pc-owl">
+            <div class="item">
+              <div class="pc-card">
+                <div class="pc-card-img">
+                  <div class="pc-gold-bar"></div>
+                  <img src="./images/Photos/0U5A6670.webp" alt="Portrait of a Noblewoman">
+                  <div class="pc-card-overlay"><span class="pc-overlay-link">View work</span></div>
+                </div>
+                <div class="pc-card-body">
+                  <div class="pc-card-tag"><span class="date">Oil on Canvas</span></div>
+                  <div class="pc-card-title"><h3 class="small-heading">Portrait of a Noblewoman</h3></div>
+                  <div class="pc-card-desc"><p class="para">18th century, attributed to the Venetian school. Full conservation &amp; revarnishing.</p></div>
+                  <div class="pc-card-button"><div class="pc-card-num">01</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="pc-card">
+                <div class="pc-card-img">
+                  <div class="pc-gold-bar"></div>
+                  <img src="./images/Photos/0U5A5305.webp" alt="Madonna con Bambino">
+                  <div class="pc-card-overlay"><span class="pc-overlay-link">View work</span></div>
+                </div>
+                <div class="pc-card-body">
+                  <div class="pc-card-tag"><span class="date">Oil on Canvas</span></div>
+                  <div class="pc-card-title"><h3 class="small-heading">Madonna con Bambino</h3></div>
+                  <div class="pc-card-desc"><p class="para">18th century, attributed to the Venetian school. Full conservation &amp; revarnishing.</p></div>
+                  <div class="pc-card-button"><div class="pc-card-num">02</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="pc-card">
+                <div class="pc-card-img">
+                  <div class="pc-gold-bar"></div>
+                  <img src="./images/Photos/0U5A6535.webp" alt="Storm Over the Harbour">
+                  <div class="pc-card-overlay"><span class="pc-overlay-link">View work</span></div>
+                </div>
+                <div class="pc-card-body">
+                  <div class="pc-card-tag"><span class="date">Oil on Canvas</span></div>
+                  <div class="pc-card-title"><h3 class="small-heading">Storm Over the Harbour</h3></div>
+                  <div class="pc-card-desc"><p class="para">18th century, attributed to the Venetian school. Full conservation &amp; revarnishing.</p></div>
+                  <div class="pc-card-button"><div class="pc-card-num">03</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="pc-card">
+                <div class="pc-card-img">
+                  <div class="pc-gold-bar"></div>
+                  <img src="./images/Photos/0U5A6660.webp" alt="Garden at Giverny">
+                  <div class="pc-card-overlay"><span class="pc-overlay-link">View work</span></div>
+                </div>
+                <div class="pc-card-body">
+                  <div class="pc-card-tag"><span class="date">Oil on Canvas</span></div>
+                  <div class="pc-card-title"><h3 class="small-heading">Garden at Giverny</h3></div>
+                  <div class="pc-card-desc"><p class="para">18th century, attributed to the Venetian school. Full conservation &amp; revarnishing.</p></div>
+                  <div class="pc-card-button"><div class="pc-card-num">04</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="pc-card">
+                <div class="pc-card-img">
+                  <div class="pc-gold-bar"></div>
+                  <img src="./images/Photos/0U5A6664.webp" alt="The Annunciation">
+                  <div class="pc-card-overlay"><span class="pc-overlay-link">View work</span></div>
+                </div>
+                <div class="pc-card-body">
+                  <div class="pc-card-tag"><span class="date">Oil on Canvas</span></div>
+                  <div class="pc-card-title"><h3 class="small-heading">The Annunciation</h3></div>
+                  <div class="pc-card-desc"><p class="para">18th century, attributed to the Venetian school. Full conservation &amp; revarnishing.</p></div>
+                  <div class="pc-card-button"><div class="pc-card-num">05</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="pc-card">
+                <div class="pc-card-img">
+                  <div class="pc-gold-bar"></div>
+                  <img src="./images/Photos/0U5A6666.webp" alt="Self-Portrait with Palette">
+                  <div class="pc-card-overlay"><span class="pc-overlay-link">View work</span></div>
+                </div>
+                <div class="pc-card-body">
+                  <div class="pc-card-tag"><span class="date">Oil on Canvas</span></div>
+                  <div class="pc-card-title"><h3 class="small-heading">Self-Portrait with Palette</h3></div>
+                  <div class="pc-card-desc"><p class="para">18th century, attributed to the Venetian school. Full conservation &amp; revarnishing.</p></div>
+                  <div class="pc-card-button"><div class="pc-card-num">06</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc-controls">
+          <button class="pc-btn" id="pc-prev" aria-label="Previous project">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg>
+          </button>
+          <button class="pc-btn" id="pc-next" aria-label="Next project">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+        </div>
+
+        <div class="pc-footer">
+          <span></span>
+          <button class="pc-footer-cta">View All Projects &nbsp;→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SECTION 6: BLOGS ══ -->
+  <section class="fp-section" id="sec-blogs">
+    <div class="blogs-section-top">
+      <div class="padding">
+        <div class="all-heading">
+          <div class="services-heading">
+            <h2 class="heading" style="text-align:center;">Blogs</h2>
+            <p class="para" style="text-align:center;">Every painting tells a story — we bring that story back to life</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blogs-inner">
+      <div class="padding">
+        <div class="blog">
+          <div class="blog-card">
+            <div class="blog-card-img">
+              <img src="./images/Photos/0U5A6660.webp" alt="" class="card-img">
+              <div class="blog-card-logo"><img src="./images/svg logo.svg" alt=""></div>
+            </div>
+            <div class="blog-card-txt">
+              <div class="blog-card-heading"><h3 class="small-heading">Lorem ipsum dolor sit amet conse</h3></div>
+              <div class="blog-card-para"><p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ullam eius aliquid quibusdam, fugit.</p></div>
+              <div class="blog-card-author">
+                <div class="author-img"><img src="./images/author.avif" alt=""></div>
+                <div class="author-name">
+                  <span class="author-name-color">Mark Twain</span>
+                  <div class="blog-date"><span class="date">27 March 2026</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-card">
+            <div class="blog-card-img">
+              <img src="./images/Photos/0U5A6664.webp" alt="" class="card-img">
+              <div class="blog-card-logo"><img src="./images/svg logo.svg" alt=""></div>
+            </div>
+            <div class="blog-card-txt">
+              <div class="blog-card-heading"><h3 class="small-heading">Lorem ipsum dolor sit amet conse</h3></div>
+              <div class="blog-card-para"><p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ullam eius aliquid quibusdam, fugit.</p></div>
+              <div class="blog-card-author">
+                <div class="author-img"><img src="./images/author.avif" alt=""></div>
+                <div class="author-name">
+                  <span class="author-name-color">Mark Twain</span>
+                  <div class="blog-date"><span class="date">27 March 2026</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-card">
+            <div class="blog-card-img">
+              <img src="./images/Photos/0U5A6535.webp" alt="" class="card-img">
+              <div class="blog-card-logo"><img src="./images/svg logo.svg" alt=""></div>
+            </div>
+            <div class="blog-card-txt">
+              <div class="blog-card-heading"><h3 class="small-heading">Lorem ipsum dolor sit amet conse</h3></div>
+              <div class="blog-card-para"><p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ullam eius aliquid quibusdam, fugit.</p></div>
+              <div class="blog-card-author">
+                <div class="author-img"><img src="./images/author.avif" alt=""></div>
+                <div class="author-name">
+                  <span class="author-name-color">Mark Twain</span>
+                  <div class="blog-date"><span class="date">27 March 2026</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blogs-footer">
+          <span></span>
+          <button class="pc-footer-cta">View All Blogs &nbsp;→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SECTION 7: FOOTER ══ -->
+  <section class="fp-section" id="sec-footer">
+    <div class="footer-spacer">
+      <div class="footer-tagline">
+        <h2>Let's Preserve History Together</h2>
+        <p>Have a piece that needs attention? We'd love to hear from you.</p>
+      </div>
+    </div>
+    <footer class="footer-space">
+      <div class="footer-parent">
+        <div class="padding-footer">
+          <div class="footer">
+            <div class="footer-logo">
+              <img src="./images/logo2.png" alt="ARC Studio">
+              <span class="date">© ARC Studio, 2026. All rights reserved.</span>
+            </div>
+
+            <div class="footer-contact">
+              <p class="para" style="margin-bottom:20px;">
+                Choskar House Gogsum,<br>Old town Leh UT - Ladakh, 194101<br>
+                <img style="height:15px;margin-right:5px;" src="./images/phone-call.png" alt=""> +91 6005570573
+              </p>
+              <div class="footer-social-media">
+                <img src="./images/facebook.png" alt="Facebook">
+                <img src="./images/instagram.png" alt="Instagram">
+                <img src="./images/linkdine.png" alt="LinkedIn">
+              </div>
+            </div>
+
+            <div class="footer-contact" style="justify-content:start;">
+              <h4>Quick links:</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Support Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Become a Volunteer</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-qr-parent">
+              <h4>Support Us:</h4>
+              <div class="footer-qr">
+                <img src="./images/qr.png" alt="QR Code">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+</div><!-- /fp-wrapper -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 <script>
-  const track    = document.getElementById('track');
-  const prevBtn  = document.getElementById('prevBtn');
-  const nextBtn  = document.getElementById('nextBtn');
-  const dotsWrap = document.getElementById('dots');
+  const sectionIds = ['sec-hero','sec-about','sec-services','sec-media','sec-projects','sec-blogs','sec-footer'];
+  const wrapper = document.getElementById('fp-wrapper');
+  const dots = document.querySelectorAll('.dot-item');
 
-  const cards = Array.from(track.children);
-  const total  = cards.length;
-  let current  = 0;       // leftmost visible card index
-  let visCount = 3;       // how many cards visible at once
-
-  /* ── how many cards fit ── */
-  function getVisible() {
-    const vw = window.innerWidth;
-    if (vw >= 900)  return 3;
-    if (vw >= 600)  return 2;
-    return 1;
-  }
-
-  /* ── build dot indicators ── */
-  function buildDots() {
-    dotsWrap.innerHTML = '';
-    const steps = total - visCount + 1;   // number of unique positions
-    for (let i = 0; i < steps; i++) {
-      const d = document.createElement('button');
-      d.className = 'dot' + (i === current ? ' active' : '');
-      d.setAttribute('aria-label', `Go to slide ${i+1}`);
-      d.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(d);
-    }
+  function scrollToSection(index) {
+    const el = document.getElementById(sectionIds[index]);
+    if (el) wrapper.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
   }
 
   function updateDots() {
-    dotsWrap.querySelectorAll('.dot').forEach((d, i) => {
-      d.classList.toggle('active', i === current);
+    const mid = wrapper.scrollTop + wrapper.clientHeight * 0.5;
+    let active = 0;
+    sectionIds.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= mid) active = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === active));
+    // Update nav active
+    document.querySelectorAll('.nav-mid ul a').forEach((a, i) => {
+      a.classList.toggle('active', i === active);
     });
   }
 
-  /* ── compute translate ── */
-  function getCardWidth() {
-    // card width + gap
-    const card = cards[0];
-    const style = getComputedStyle(track);
-    const gap = parseFloat(style.gap) || 22;
-    return card.getBoundingClientRect().width + gap;
-  }
-
-  function applyTranslate() {
-    const cardStep = getCardWidth();
-    const offset   = current * cardStep;
-    track.style.transform = `translateX(-${offset}px)`;
-  }
-
-  /* ── navigation ── */
-  function goTo(index) {
-    const maxIndex = total - visCount;
-    current = Math.max(0, Math.min(index, maxIndex));
-    applyTranslate();
-    updateDots();
-    prevBtn.disabled = current === 0;
-    nextBtn.disabled = current === maxIndex;
-  }
-
-  prevBtn.addEventListener('click', () => goTo(current - 1));
-  nextBtn.addEventListener('click', () => goTo(current + 1));
-
-  /* ── touch/swipe ── */
-  let touchStartX = 0;
-  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', e => {
-    const dx = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(dx) > 50) goTo(current + (dx > 0 ? 1 : -1));
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => scrollToSection(+dot.dataset.section));
+    dot.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') scrollToSection(+dot.dataset.section); });
   });
 
-  /* ── resize ── */
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      const newVis = getVisible();
-      if (newVis !== visCount) {
-        visCount = newVis;
-        buildDots();
-      }
-      goTo(Math.min(current, total - visCount));
-    }, 60);
-  });
+  wrapper.addEventListener('scroll', updateDots, { passive: true });
 
-  /* ── init ── */
-  visCount = getVisible();
-  buildDots();
-  goTo(0);
+  // Offcanvas
+  const menuToggle = document.getElementById('menuToggle');
+  const overlay = document.getElementById('offcanvasOverlay');
+  const panel = document.getElementById('offcanvasPanel');
+
+  function openMenu() { panel.classList.add('is-open'); overlay.classList.add('is-open'); menuToggle.classList.add('is-open'); menuToggle.setAttribute('aria-expanded','true'); }
+  function closeMenu() { panel.classList.remove('is-open'); overlay.classList.remove('is-open'); menuToggle.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded','false'); }
+
+  menuToggle.addEventListener('click', () => panel.classList.contains('is-open') ? closeMenu() : openMenu());
+  overlay.addEventListener('click', closeMenu);
+
+  // Owl Carousel
+  $(document).ready(function() {
+    const owl = $('#pc-owl').owlCarousel({
+      loop: true, center: true, margin: 24,
+      nav: false, dots: false,
+      responsive: { 0:{items:1}, 768:{items:2}, 1200:{items:3} }
+    });
+    document.getElementById('pc-prev').addEventListener('click', () => owl.trigger('prev.owl.carousel'));
+    document.getElementById('pc-next').addEventListener('click', () => owl.trigger('next.owl.carousel'));
+  });
 </script>
 </body>
 </html>

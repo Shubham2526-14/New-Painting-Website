@@ -505,7 +505,7 @@
        /* position: absolute;
        top: 2px; */
        /* background-color: #d5a749; */
-       background-color: var(--bg-color);
+       /* background-color: var(--bg-color); */
        /* background-color: pink; */
    
     
@@ -562,7 +562,7 @@ height: 33px;
        gap: 35px;
        align-items: center;
    
-       font-size: 14px;
+       font-size: 18px;
 
            /* font-weight: 550; */
 
@@ -598,7 +598,7 @@ height: 33px;
   width: 100%;
 }
    .nav-logo{
-    width: 140px;
+    width: 200px;
   
    }
    .nav-logo img{
@@ -609,14 +609,18 @@ height: 33px;
 
     
             .tata-img img{
-          width:90px;
-          height: auto;
-          }
-          .tata-img h4{
-            font-size: 13px;
+            width:145px;
+            height: auto;
+
+            }
+
+
+          .tata-img p{
+            font-size: 18px;
             text-align: end;
             font-style: normal;
             /* color: var(--logo-color); */
+            font-family: "Nunito Sans", sans-serif;
             
           }
 
@@ -1648,8 +1652,8 @@ align-items: center;
           padding: 0px 40px;
          }  
          .padding-footer{
-                        padding: 0 5%;
-  max-width: 1350px;
+                        padding: 0 50px;
+  /* max-width: 1350px; */
   margin: auto;
 
          }
@@ -1657,7 +1661,7 @@ align-items: center;
          .footer-parent{
        
                 /* padding: 80px 125px 20px 125px; */
-                padding: 80px 0px 20px 0px;
+                padding: 50px 0px 20px 0px;
                    /* background-color: #272421; */
                       /* padding: 0 5%;
   max-width: 1700px;
@@ -1751,7 +1755,7 @@ rgba(0, 0, 0, 0.078) 0px 18px 20px 17px;
          .footer-bottom-txt{
           display: flex;
           justify-content: center;
-          margin-top: 80px;
+          margin-top: 0px;
          }
        
      .footer-contact p:nth-child(3){
@@ -1768,3 +1772,269 @@ rgba(0, 0, 0, 0.078) 0px 18px 20px 17px;
 
 
 
+
+
+
+
+
+/* color switcher *//* ARC Studio — Color Switcher Panel
+   Link this in <head> alongside your other stylesheets */
+/* ARC Studio — Color Switcher Panel
+   Link this in <head> alongside your other stylesheets */
+
+/* ── Panel ──────────────────────────────────────────────────────────── */
+
+.arc-color-switcher {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: 16px;
+  padding: 12px 10px;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Columns ────────────────────────────────────────────────────────── */
+
+.arc-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+}
+
+/* ── Divider between columns ────────────────────────────────────────── */
+
+.arc-divider {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(0, 0, 0, 0.10);
+  margin: 0 2px;
+  border-radius: 1px;
+}
+
+/* ── Label ──────────────────────────────────────────────────────────── */
+
+.arc-switcher-label {
+  font-size: 9px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #999;
+  font-family: inherit;
+  user-select: none;
+}
+
+/* ── Preset dots ────────────────────────────────────────────────────── */
+
+.arc-switcher-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.arc-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.arc-dot:hover {
+  transform: scale(1.18);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.arc-dot:focus-visible {
+  box-shadow: 0 0 0 3px rgba(201, 168, 124, 0.5);
+}
+
+.arc-dot--active::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.30);
+  pointer-events: none;
+}
+
+/* ── Custom column ──────────────────────────────────────────────────── */
+
+/* Preview circle for custom colour */
+.arc-custom-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #aaa;
+  background: conic-gradient(red, yellow, lime, cyan, blue, magenta, red);
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+/* Hue label e.g. "120°" */
+.arc-hue-label {
+  font-size: 10px;
+  color: #888;
+  font-family: inherit;
+  user-select: none;
+  min-width: 28px;
+  text-align: center;
+}
+
+/* Vertical slider wrapper — rotates the native range input */
+.arc-slider-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  width: 22px;
+  position: relative;
+}
+
+.arc-hue-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 120px;
+  height: 6px;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  /* Rainbow hue track */
+  background: linear-gradient(
+    to right,
+    hsl(0,70%,88%),
+    hsl(30,70%,88%),
+    hsl(60,70%,88%),
+    hsl(90,70%,88%),
+    hsl(120,70%,88%),
+    hsl(150,70%,88%),
+    hsl(180,70%,88%),
+    hsl(210,70%,88%),
+    hsl(240,70%,88%),
+    hsl(270,70%,88%),
+    hsl(300,70%,88%),
+    hsl(330,70%,88%),
+    hsl(360,70%,88%)
+  );
+}
+
+.arc-hue-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(0,0,0,0.25);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.20);
+  cursor: pointer;
+  transition: transform 0.12s;
+}
+
+.arc-hue-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.arc-hue-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(0,0,0,0.25);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.20);
+  cursor: pointer;
+}
+
+/* Apply / confirm button */
+.arc-apply-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,0,0,0.18);
+  background: #fff;
+  color: #444;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.15s, transform 0.12s;
+  outline: none;
+}
+
+.arc-apply-btn:hover {
+  background: #f0f0f0;
+  transform: scale(1.12);
+}
+
+.arc-apply-btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(201,168,124,0.5);
+}
+
+/* ── Mobile — horizontal bar ────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .arc-color-switcher {
+    bottom: 16px;
+    right: 50%;
+    transform: translateX(50%);
+    flex-direction: row;
+    padding: 10px 12px;
+    border-radius: 40px;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .arc-divider {
+    width: 1px;
+    height: 28px;
+    align-self: center;
+  }
+
+  .arc-col {
+    flex-direction: row;
+    gap: 7px;
+    padding: 0 4px;
+  }
+
+  .arc-switcher-label {
+    display: none;
+  }
+
+  .arc-hue-label {
+    display: none;
+  }
+
+  /* On mobile, slider goes horizontal naturally */
+  .arc-slider-wrap {
+    height: 22px;
+    width: 80px;
+  }
+
+  .arc-hue-slider {
+    width: 80px;
+    transform: none;
+  }
+
+  .arc-apply-btn {
+    flex-shrink: 0;
+  }
+}
