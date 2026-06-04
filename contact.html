@@ -4,76 +4,749 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
+  <title>ARC Studio — Art Restoration & Conservation</title>
 
-  <!-- Owl Carousel CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600&display=swap"
+    rel="stylesheet">
 
-  <!-- Site CSS (already has all variables, nav, footer styles) -->
-  <link rel="stylesheet" href="style/style.css">
-  <link rel="stylesheet" href="style/media.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
   <style>
-    /* ─── HERO (same pattern as about.html hero) ─── */
-    .hero {
-      background-image:
-        linear-gradient(
-          to top,
-          rgba(0,0,0,0.9) 0%,
-          rgba(0,0,0,0.3) 50%,
-          rgba(0,0,0,0.0) 100%
-        ),
-        url(./images/Photos/0U5A6664.webp);
+    :root {
+      --bg: #EFE8E2;
+      --gold: #d5a749;
+      --dark: #3F3027;
+      --muted: #565656;
+      --card-bg: #f2f2f2;
+      --white: #ffffff;
+      --nav-dark: #1a1610;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  /* overflow: hidden; */
+}
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--dark);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ─── FULLPAGE WRAPPER ─── */
+.fp-section {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+
+    /* ─── OFFCANVAS NAV ─── */
+    .offcanvas-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 8, 5, 0.65);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      backdrop-filter: blur(2px);
+    }
+
+    .offcanvas-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .offcanvas-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(480px, 100vw);
+      height: 100vh;
+      background: var(--nav-dark);
+      z-index: 1050;
+      overflow: hidden;
+      transform: translateX(100%);
+      transition: transform 0.72s var(--ease);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .offcanvas-panel.is-open {
+      transform: translateX(0);
+    }
+
+    .offcanvas-bg-logo {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .offcanvas-bg-logo img {
+      width: 80%;
+      opacity: 0.06;
+      filter: blur(5px);
+    }
+
+    .offcanvas-inner {
+      position: relative;
+      z-index: 2;
+      padding: 2.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .offcanvas-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.45s ease 0.18s, transform 0.45s var(--ease) 0.18s;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-eyebrow {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .offcanvas-divider {
+      height: 0.5px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 1.4rem 0;
+      opacity: 0;
+      transform: scaleX(0);
+      transition: opacity 0.5s, transform 0.6s var(--ease);
+      transform-origin: left;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-divider {
+      opacity: 1;
+      transform: scaleX(1);
+      transition-delay: 0.35s;
+    }
+
+    .offcanvas-nav {
+      list-style: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.15rem;
+    }
+
+    .offcanvas-nav li {
+      overflow: hidden;
+    }
+
+    .offcanvas-nav a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.9rem;
+      color: var(--white);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.7rem, 3.5vw, 2.1rem);
+      padding: 0.45rem 0;
+      transform: translateY(60px);
+      opacity: 0;
+      transition: color 0.3s, transform 0.55s var(--ease), opacity 0.45s;
+      cursor: pointer;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-nav a {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-nav li:nth-child(1) a {
+      transition-delay: 0.22s;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-nav li:nth-child(2) a {
+      transition-delay: 0.28s;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-nav li:nth-child(3) a {
+      transition-delay: 0.34s;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-nav li:nth-child(4) a {
+      transition-delay: 0.40s;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-nav li:nth-child(5) a {
+      transition-delay: 0.46s;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-nav li:nth-child(6) a {
+      transition-delay: 0.52s;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-nav li:nth-child(7) a {
+      transition-delay: 0.58s;
+    }
+
+    .nav-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    .offcanvas-nav a:hover {
+      color: var(--gold);
+    }
+
+    .offcanvas-footer {
+      border-top: 0.5px solid rgba(184, 149, 63, 0.2);
+      padding-top: 1.4rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s 0.7s, transform 0.5s var(--ease) 0.7s;
+    }
+
+    .offcanvas-panel.is-open .offcanvas-footer {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── MAIN NAVBAR — NOT FIXED (static in flow) ─── */
+    .main-navbar {
+      position: relative;
+      /* was fixed — now static so it scrolls with the page */
+      z-index: 800;
+      padding: 0 40px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(254, 248, 219, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(213, 167, 73, 0.15);
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .nav-logo img {
+      height: 60px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      align-items: center;
+    }
+
+    /* Nav links no longer scroll — they are plain links for future pages */
+    .nav-links a {
+      font-size: 15px;
+      color: var(--dark);
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-right-area {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .tata-support {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .tata-support span {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .tata-support img {
+      height: 20px;
+      width: auto;
+      margin-top: 2px;
+    }
+
+    .menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      position: relative;
+      z-index: 1100;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: var(--dark);
+      transition: transform 0.45s var(--ease), opacity 0.3s, width 0.4s var(--ease);
+      transform-origin: center;
+    }
+
+    .menu-toggle span:nth-child(2) {
+      width: 20px;
+    }
+
+    .menu-toggle.is-open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+      width: 28px;
+    }
+
+    .menu-toggle.is-open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .menu-toggle.is-open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+      width: 28px;
+    }
+
+    /* ─── FULLPAGE SECTIONS — account for navbar now being in-flow ─── */
+    /* Each section is still 100vh. The navbar is inside .fp-section for hero,
+       and for other sections we use padding-top to push content below a sticky
+       in-section nav strip — BUT since nav is in the hero section, other sections
+       have 100vh full height. */
+
+    /* ─── SECTION 1: HERO ─── */
+    #sec-hero {
+      height: 100vh;
+      background-image: url('images/shesrig010A8945.jpeg');
       background-size: cover;
       background-position: center;
+      flex-direction: column;
+      margin-bottom: 80px; /* equal to navbar height, so next section starts after the hero nav */
     }
-    .hero-flx {
+
+    /* The navbar sits at top of hero section */
+    #sec-hero .main-navbar {
+      position: relative;
+      background: var(--bg);
+      /* backdrop-filter: blur(4px); */
+      border-bottom: 0.5px solid rgba(213, 167, 73, 0.2);
+    }
+
+    /* #sec-hero .main-navbar .nav-links a, */
+    /* #sec-hero .main-navbar .nav-logo img { filter: brightness(10); } */
+    /* #sec-hero .main-navbar .menu-toggle span { background: #fff; } */
+    #sec-hero .main-navbar .tata-support span {
+      color: var(--dark);
+    }
+
+    .hero-overlay {
+      flex: 1;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      height: 72vh;
-      padding-bottom: 100px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.38);
+      position: relative;
+    
     }
-    .hero-heading h2 {
-      font-size: 80px;
-      color: var(--heading2-color);
-      border-bottom: 2px solid var(--logo-color);
+
+    .hero-content {
+      text-align: center;
+      color: var(--white);
+      padding: 0 20px;
     }
-    .hero-sub-txt {
+
+    .hero-content h1 {
+      color: var(--white);
+      font-size: clamp(40px, 6vw, 80px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
       font-size: 18px;
-      color: var(--heading2-color);
-      max-width: 380px;
-      opacity: 0.65;
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 600px;
+      margin: 0 auto 36px;
       line-height: 1.7;
-      margin-bottom: 6px;
-      font-weight: 300;
     }
 
-    /* ─── CONTACT SECTION WRAPPER ─── */
-    .contact-parent {
-      margin-top: 80px;
-      margin-bottom: 150px;
+    /* ─── BUTTON — animated icon expand ─── */
+    .bookmarkBtn {
+      width: fit-content;
+      padding: 13px 5px 13px 5px;
+      border-radius: 40px;
+      border: none;
+      background-color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08), 0 8px 25px rgba(213, 167, 73, 0.35);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Nunito Sans', sans-serif;
+      min-width: 150px;
     }
 
-    /* ─── TWO COLUMN GRID ─── */
-    .contact-grid {
+    .bookmarkBtn:hover {
+      box-shadow: 0 6px 18px rgba(213, 167, 73, 0.45);
+    }
+
+    .bookmarkBtn:active {
+      transform: scale(0.95);
+    }
+
+    .IconContainer {
+      width: 32px;
+      height: 32px;
+      background-color: var(--bg);
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 2;
+      transition: width 0.35s var(--ease);
+      position: absolute;
+      left: 8px;
+      flex-shrink: 0;
+    }
+
+    .IconContainer img {
+      height: 22px;
+      object-fit: cover;
+    }
+
+    .bookmarkBtn .bk-text {
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: 0.03em;
+      z-index: 1;
+      margin-left: 42px;
+      /* space for the icon */
+      white-space: nowrap;
+      transition: opacity 0.2s ease, margin-left 0.35s var(--ease);
+    }
+
+    .bookmarkBtn:hover .IconContainer {
+      width: calc(100% - 16px);
+    }
+
+    .bookmarkBtn:hover .bk-text {
+      opacity: 0;
+    }
+
+    /* hero CTA variant */
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-family: 'Nunito Sans', sans-serif;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(213, 167, 73, 0.45);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(213, 167, 73, 0.55);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-scroll-hint span {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: 0.4;
+        transform: scaleY(1)
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1.3)
+      }
+    }
+
+   
+   
+
+    /* ─── SECTION 7: FOOTER ─── */
+    #sec-footer {
+      background: var(--bg);
+  min-height: auto;
+  flex-direction: column;
+    }
+
+    .footer-wrap {
+      background-color: #c0ab9a;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      padding: 40px 0 24px;
+    
+    }
+
+    .footer-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
+      grid-template-columns: 1.2fr 1fr 1fr 0.8fr;
+      gap: 40px;
       align-items: start;
     }
 
-    /* ─── LEFT COLUMN ─── */
-    .contact-left-col {}
+    .footer-logo-col img {
+      height: 90px;
+      width: auto;
+    }
+
+    .footer-logo-col .footer-copy {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    .footer-contact-col address {
+      font-style: normal;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .footer-contact-col .footer-phone {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .footer-social img {
+      height: 20px;
+    }
+
+    .footer-links-col h4 {
+      font-size: 20px;
+      color: rgb(232, 232, 232);
+      margin-bottom: 16px;
+    }
+
+    .footer-links-col ul {
+      list-style: none;
+      padding: 0
+    }
+
+    .footer-links-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links-col ul li a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .footer-links-col ul li a:hover {
+      color: var(--gold);
+    }
+
+    .footer-qr-col h4 {
+      font-size: 20px;
+      color: rgb(232, 232, 232);
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .footer-qr-col .qr-img {
+      height: 120px;
+      width: 120px;
+    }
+
+    .footer-qr-col .qr-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .footer-divider {
+      height: 0.5px;
+      background: #c5c5c5;
+      margin: 20px 0 14px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-bottom span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ─── SECTION HEADER ─── */
+    .sec-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .sec-header .section-eyebrow {
+      margin-bottom: 6px;
+    }
+
+    .sec-header .section-heading {
+      font-size: clamp(36px, 3.5vw, 56px);
+    }
+
+    .sec-header .section-para {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width:991px) {
+      .nav-links {
+        display: none;
+      }
+
+      .tata-support {
+        display: none;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-img-wrap {
+        height: 40vh;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .event-section {
+        flex-direction: column;
+      }
+
+      .event-left,
+      .event-right {
+        width: 100%;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
 
 
 
-    .contact-main-heading {
+
+
+    /* contact css */
+
+        .contact-main-heading {
       font-size: 60px;
       font-weight: 300;
       color: var(--heading-color);
@@ -93,14 +766,18 @@
       gap: 0;
       margin-bottom: 20px;
     }
+
     .info-item {
       display: flex;
       align-items: flex-start;
       gap: 20px;
       padding: 22px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .info-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+
+    .info-item:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
     .info-icon-wrap {
       width: 42px;
@@ -112,6 +789,7 @@
       justify-content: center;
       opacity: 0.8;
     }
+
     .info-icon-wrap svg {
       width: 17px;
       height: 17px;
@@ -127,8 +805,9 @@
       letter-spacing: 0.35em;
       text-transform: uppercase;
       margin-bottom: 5px;
-      
+
     }
+
     .info-content p {
       font-size: 15px;
       font-weight: 300;
@@ -143,6 +822,7 @@
       gap: 12px;
       margin-bottom: 55px;
     }
+
     .contact-social-row a {
       width: 38px;
       height: 38px;
@@ -153,9 +833,11 @@
       text-decoration: none;
       transition: border-color 0.3s, background 0.3s;
     }
+
     .contact-social-row a:hover {
       border-color: var(--logo-color);
     }
+
     .contact-social-row svg {
       width: 14px;
       height: 14px;
@@ -166,7 +848,10 @@
       stroke-linejoin: round;
       transition: stroke 0.3s;
     }
-    .contact-social-row a:hover svg { stroke: var(--logo-color); }
+
+    .contact-social-row a:hover svg {
+      stroke: var(--logo-color);
+    }
 
     /* ─── FORM ─── */
     .form-section-heading {
@@ -176,24 +861,30 @@
       margin-bottom: 28px;
       letter-spacing: 0.02em;
     }
-    .form-section-heading span { color: var(--logo-color); }
+
+    .form-section-heading span {
+      color: var(--logo-color);
+    }
 
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 30px;
-      margin-top: 50px;
+      gap: 20px;
+      /* margin-top: 50px; */
     }
+
     .form-row-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px;
     }
+
     .form-grp {
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
+
     .form-grp label {
       font-size: 10px;
       letter-spacing: 0.35em;
@@ -201,33 +892,43 @@
       color: rgba(17, 17, 17, 0.45);
       font-weight: 400;
     }
+
     .form-grp input,
     .form-grp textarea,
     .form-grp select {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       border: none;
       border-bottom: 1px solid rgba(0, 0, 0, 0.18);
       color: var(--heading-color);
       font-family: 'Cormorant Garamond', serif;
       font-size: 16px;
       font-weight: 300;
-      padding: 12px 0;
+      padding: 6px 0;
       outline: none;
       transition: border-color 0.3s;
       width: 100%;
       resize: none;
     }
+
     .form-grp input:focus,
     .form-grp textarea:focus,
     .form-grp select:focus {
       border-bottom-color: var(--logo-color);
     }
+
     .form-grp input::placeholder,
     .form-grp textarea::placeholder {
-      color: rgba(255,255,255,0.2);
+      color: rgba(255, 255, 255, 0.2);
     }
-    .form-grp select option { background: #1a1410; }
-    .form-grp textarea { min-height: 120px; padding-top: 10px; }
+
+    .form-grp select option {
+      background: #1a1410;
+    }
+
+    .form-grp textarea {
+      /* min-height: 120px; */
+      padding-top: 10px;
+    }
 
     /* submit button — same gold outline style as the rest of site */
     .btn-submit {
@@ -248,25 +949,45 @@
       overflow: hidden;
       transition: color 0.35s;
     }
+
     .btn-submit::before {
       content: '';
       position: absolute;
       inset: 0;
       background: var(--logo-color);
       transform: translateX(-101%);
-      transition: transform 0.4s cubic-bezier(.77,0,.18,1);
+      transition: transform 0.4s cubic-bezier(.77, 0, .18, 1);
       z-index: 0;
     }
-    .btn-submit:hover::before { transform: translateX(0); }
-    .btn-submit:hover { color: #0d0d0d; }
-    .btn-submit span, .btn-submit svg { position: relative; z-index: 1; }
+
+    .btn-submit:hover::before {
+      transform: translateX(0);
+    }
+
+    .btn-submit:hover {
+      color: #0d0d0d;
+    }
+
+    .btn-submit span,
     .btn-submit svg {
-      width: 15px; height: 15px;
-      stroke: currentColor; fill: none;
-      stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-submit svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
       transition: transform 0.3s;
     }
-    .btn-submit:hover svg { transform: translateX(5px); }
+
+    .btn-submit:hover svg {
+      transform: translateX(5px);
+    }
 
     .form-success-msg {
       display: none;
@@ -276,9 +997,25 @@
       border: 1px solid var(--logo-color);
       margin-top: 8px;
     }
-    .form-success-msg.show { display: flex; }
-    .form-success-msg svg { width: 20px; height: 20px; stroke: var(--logo-color); fill: none; stroke-width: 1.8; flex-shrink: 0; }
-    .form-success-msg p { font-size: 15px; font-weight: 300; opacity: 0.8; }
+
+    .form-success-msg.show {
+      display: flex;
+    }
+
+    .form-success-msg svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--logo-color);
+      fill: none;
+      stroke-width: 1.8;
+      flex-shrink: 0;
+    }
+
+    .form-success-msg p {
+      font-size: 15px;
+      font-weight: 300;
+      opacity: 0.8;
+    }
 
     /* ─── RIGHT COLUMN – Map ─── */
     .contact-right-col {
@@ -292,14 +1029,16 @@
       height: 400px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
+
     .map-container iframe {
       width: 100%;
       height: 100%;
       border: none;
       filter: grayscale(25%);
     }
+
     .map-overlay-badge {
       position: absolute;
       bottom: 18px;
@@ -309,6 +1048,7 @@
       padding: 14px 18px;
       backdrop-filter: blur(8px);
     }
+
     .map-overlay-badge h5 {
       font-size: 10px;
       letter-spacing: 0.35em;
@@ -316,6 +1056,7 @@
       color: var(--logo-color);
       margin-bottom: 5px;
     }
+
     .map-overlay-badge p {
       font-size: 13px;
       font-weight: 300;
@@ -331,16 +1072,31 @@
       color: var(--logo-color);
       margin: 30px 0 14px;
     }
+
     .hours-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 13px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     }
-    .hours-row:first-of-type { border-top: 1px solid rgba(255,255,255,0.07); }
-    .hours-day { font-size: 15px; font-weight: 300; opacity: 0.7; }
-    .hours-time { font-size: 14px; color: var(--logo-color); letter-spacing: 0.04em; }
+
+    .hours-row:first-of-type {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .hours-day {
+      font-size: 15px;
+      font-weight: 300;
+      opacity: 0.7;
+    }
+
+    .hours-time {
+      font-size: 14px;
+      color: var(--logo-color);
+      letter-spacing: 0.04em;
+    }
+
     .hours-closed {
       font-size: 10px;
       letter-spacing: 0.2em;
@@ -353,320 +1109,584 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1050px) {
-      .contact-grid { grid-template-columns: 1fr; gap: 60px; }
-      .contact-right-col { position: static; }
-      .map-container { height: 380px; }
-      .hero-flx { height: 40vh; }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .contact-right-col {
+        position: static;
+      }
+
+      .map-container {
+        height: 380px;
+      }
+
+      .hero-flx {
+        height: 40vh;
+      }
     }
 
     @media (max-width: 768px) {
-      .hero-heading h2 { font-size: 60px; }
-      .hero-flx { padding-bottom: 70px; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 14px; height: 55vh; }
-      .contact-parent { margin-top: 50px; margin-bottom: 100px; }
+      .hero-heading h2 {
+        font-size: 60px;
+      }
+
+      .hero-flx {
+        padding-bottom: 70px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        gap: 14px;
+        height: 55vh;
+      }
+
+      .contact-parent {
+        margin-top: 50px;
+        margin-bottom: 100px;
+      }
     }
 
     @media (max-width: 576px) {
-      .hero-heading h2 { font-size: 44px; }
-      .hero-flx { height: 52vh; padding-bottom: 55px; }
-      .form-row-2 { grid-template-columns: 1fr; }
-      .contact-parent { margin-top: 35px; margin-bottom: 80px; }
-      .map-container { height: 300px; }
-      .contact-grid { gap: 45px; }
+      .hero-heading h2 {
+        font-size: 44px;
+      }
+
+      .hero-flx {
+        height: 52vh;
+        padding-bottom: 55px;
+      }
+
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-parent {
+        margin-top: 35px;
+        margin-bottom: 80px;
+      }
+
+      .map-container {
+        height: 300px;
+      }
+
+      .contact-grid {
+        gap: 45px;
+      }
     }
 
     @media (max-width: 480px) {
-      .hero-heading h2 { font-size: 36px; }
-      .contact-main-heading { font-size: 32px; }
-      .btn-submit { padding: 12px 26px; font-size: 12px; }
+      .hero-heading h2 {
+        font-size: 36px;
+      }
+
+      .contact-main-heading {
+        font-size: 32px;
+      }
+
+      .btn-submit {
+        padding: 12px 26px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- OVERLAY -->
-  <div class="offcanvas-overlay" id="offcanvasOverlay" aria-hidden="true"></div>
+  <!-- ─── OFFCANVAS OVERLAY ─── -->
+  <div class="offcanvas-overlay" id="offcanvasOverlay"></div>
 
-  <!-- OFFCANVAS PANEL — exact copy from about.html -->
-  <nav class="offcanvas" id="offcanvas" aria-label="Site navigation" aria-hidden="true">
+  <!-- ─── OFFCANVAS PANEL ─── -->
+  <nav class="offcanvas-panel" id="offcanvasPanel" aria-label="Site navigation">
     <div class="offcanvas-bg-logo" aria-hidden="true">
-      <img src="./images/logo.png" alt="">
+      <img src="images/logo.png" alt="">
     </div>
     <div class="offcanvas-inner">
       <p class="offcanvas-eyebrow">Navigation</p>
       <div class="offcanvas-divider"></div>
-      <ul class="offcanvas-nav" role="list">
-        <li><a href="./index.html"><span class="nav-num">01</span>Home</a></li>
-        <li><a href="./about.html"><span class="nav-num">02</span>About</a></li>
-        <li><a href="#"><span class="nav-num">03</span>Services</a></li>
-        <li><a href="#"><span class="nav-num">04</span>Projects</a></li>
-        <li><a href="#"><span class="nav-num">05</span>Media &amp; Publications</a></li>
-        <li><a href="#"><span class="nav-num">06</span>Blogs</a></li>
-        <li><a href="./contact.html"><span class="nav-num">07</span>Contact</a></li>
+      <ul class="offcanvas-nav">
+        <li><a href="index.html"><span class="nav-num">01</span>Home</a></li>
+        <li><a href="about.html"><span class="nav-num">02</span>About</a></li>
+        <li><a href="services.html"><span class="nav-num">03</span>Services</a></li>
+        <li><a href="projects.html"><span class="nav-num">04</span>Projects</a></li>
+        <li><a href="media.html"><span class="nav-num">05</span>Media &amp; Publications</a></li>
+        <li><a href="blogs.html"><span class="nav-num">06</span>Blogs</a></li>
+        <li><a href="contact.html"><span class="nav-num">07</span>Contact</a></li>
       </ul>
       <footer class="offcanvas-footer">
-        <address class="footer-address" style="font-style: normal;">
+        <address
+          style="font-style:normal;font-size:12px;color:rgba(245,240,232,0.62);letter-spacing:0.06em;line-height:1.9;text-transform:uppercase;margin-bottom:1rem;">
           Studio 14, Heritage Arts Complex<br>
           Regal Building, M.G. Road<br>
           Mumbai – 400 001, India
         </address>
-        <div class="footer-supported">
-          <span class="footer-supported-label">Supported by</span>
-          <span class="footer-supported-name">Tata Trusts</span>
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span
+            style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,240,232,0.62);">Supported
+            by</span>
+          <span
+            style="font-size:11px;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;border:0.5px solid rgba(184,149,63,0.4);padding:3px 10px;border-radius:2px;">Tata
+            Trusts</span>
         </div>
       </footer>
     </div>
   </nav>
 
 
-  <!-- navbar — exact copy from about.html -->
-  <div class="bg-img">
 
-    <nav class="navbar">
-      <div class="nav-left">
+  <!-- ════════════════════════════════════════
+     FULLPAGE SCROLL WRAPPER
+════════════════════════════════════════ -->
+
+    <!-- ─── SECTION 1: HERO ─── -->
+    <section class="fp-section" id="sec-hero">
+      <!-- Navbar lives inside hero section so it scrolls away with it -->
+      <header class="main-navbar">
         <div class="nav-logo">
-          <a href="./index.html"><img src="./images/logo2.png" alt=""></a>
+          <a href="index.html"><img src="images/logo2.png" alt="ARC Studio"></a>
         </div>
-      </div>
-      <div class="nav-mid">
-        <ul>
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./about.html">About</a></li>
-          <li><a href="">Services</a></li>
-          <li><a href="">Projects</a></li>
-          <li><a href="">Media &amp; Publications</a></li>
-          <li><a href="">Blogs</a></li>
-          <li><a href="./contact.html" class="active">Contact</a></li>
+
+        <style>
+          .nav-links {
+            padding: 0;
+            margin: 0
+          }
+        </style>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="media.html">Media</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
-      </div>
-      <div class="nav-right">
-        <div class="tata-img">
-          <h4>Supported By </h4>
-          <img src="./images/tata.png" alt="">
+        <div class="nav-right-area">
+          <div class="tata-support">
+            <span>Supported By</span>
+            <img src="images/tata.png" alt="Tata Trusts">
+          </div>
+          <!-- <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button> -->
         </div>
-        <div class="menu-bar">
-          <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
+      </header>
+
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <div
+            style="font-size:12px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;opacity:0.9;">
+            Est. 2014 · Mumbai, India</div>
+          <h1>Art Restoration &<br>Conservation Studio</h1>
+          <p>Dedicated conservators committed to the cause of fine art restoration with emphasis on preventive care and
+            minimal intervention.</p>
+          <button class="bookmarkBtn">
+            <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
+            <span class="bk-text">Read More</span>
           </button>
+          <!-- <button class="hero-cta" onclick="scrollToSection(1)">
+          Discover Our Work
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </button> -->
+        </div>
+        <div class="hero-scroll-hint">
+          <span>Scroll</span>
+          <div class="scroll-line"></div>
         </div>
       </div>
-    </nav>
+    </section>
 
 
-    <!-- hero section — same structure as about.html -->
-    <header class="hero">
-      <div class="padding">
-        <div class="hero-flx">
-          <div class="hero-heading">
-            <h2>Contact Us</h2>
-          </div>
-          <div>
-          </div>
-        </div>
-      </div>
-    </header>
+    <style>
+      .map-parent{
+        height: auto;
+      }
+    .contact-parent{
+      height: auto;
+        /* height: 70%; */
+        margin-bottom: 20px;
+        /* border-radius: 10px; */
+    
+    }
+    .contact-img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .form-parent{
+    padding:30px;
+          /* background:#7d7568 */
+              /* background:#d4d1c4; */
 
- 
+    }
+    /* .contact-map-parent{
+      height: 100vh;
+
+    } */
+    
 
 
-  <!-- ══════════════════════════════
+
+</style>
+
+
+
+    <!-- ══════════════════════════════
        CONTACT MAIN SECTION
   ══════════════════════════════ -->
-  <section class="contact-parent">
-    <div class="padding">
-      <div class="contact-grid">
+  <div class="contact-map-parent">
+    <section class="container contact-parent">
+      <div class="con-flex" style="display: flex;">
+      <div class="contact-img col-lg-6">
+        <img src="images/Photos/SL_Opening_202243.webp" alt="Contact Us">
+      </div>
+      <div class="padding col-lg-6 form-parent">
+        <div class="contact-grid">
 
-        <!-- LEFT — info + form -->
-        <div class="contact-left-col">
+          <!-- LEFT — info + form -->
+          <div class="contact-left-col">
 
-          <h2 class="heading">Get in touch<br><em>With us</em></h2>
-          <div class="contact-intro-para">
-            <p class="para">Whether you have a restoration project in mind, want to learn about our conservation process, or simply wish to visit the studio — we are always here to help.</p>
-          </div>
+            <h2 class="heading">Get in touch</h2>
+            <div class="contact-intro-para">
+              <p class="para">Whether you have a restoration project in mind, want to learn about our conservation
+                process,.</p>
+            </div>
 
-          <!-- Info items -->
-          
+            <!-- Info items -->
 
-          <!-- Social -->
-         
 
-          <!-- Form -->
-          <form class="contact-form" id="contactForm" novalidate>
+            <!-- Social -->
 
-            <div class="form-row-2">
-              <div class="form-grp">
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" placeholder="Your first name" required>
+
+            <!-- Form -->
+            <form class="contact-form" id="contactForm" novalidate>
+
+              <div class="form-row-2">
+                <div class="form-grp">
+                  <label for="fname">Full Name</label>
+                  <input type="text" id="fname" placeholder="Your first name" required>
+                </div>
+                <div class="form-grp">
+                  <label for="subject">Subject</label>
+                  <select id="subject">
+                    <option value="" disabled selected>Select a subject</option>
+                    <option>Restoration Enquiry</option>
+                    <option>Studio Visit</option>
+                    <option>Collaboration</option>
+                    <option>Media &amp; Press</option>
+                    <option>General Question</option>
+                  </select>
+                </div>
+
               </div>
-              <div class="form-grp">
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" placeholder="Your last name">
+
+              <div class="form-row-2">
+                <div class="form-grp">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-grp">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" placeholder="+91 00000 00000">
+                </div>
+
               </div>
-            </div>
-
-            <div class="form-grp">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" placeholder="you@example.com" required>
-            </div>
-
-            <div class="form-grp">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" placeholder="+91 00000 00000">
-            </div>
-
-            <div class="form-grp">
-              <label for="subject">Subject</label>
-              <select id="subject">
-                <option value="" disabled selected>Select a subject</option>
-                <option>Restoration Enquiry</option>
-                <option>Studio Visit</option>
-                <option>Collaboration</option>
-                <option>Media &amp; Press</option>
-                <option>General Question</option>
-              </select>
-            </div>
-
-            <div class="form-grp">
-              <label for="message">Your Message</label>
-              <textarea id="message" placeholder="Tell us about your project or enquiry…" required></textarea>
-            </div>
-
-                 <button class="bookmarkBtn">
-  <span class="IconContainer">
-<img src="./images/svg logo.svg" alt="">
-  </span>
-  <p class="text">Send Message</p>
-</button>
-
-            <div class="form-success-msg" id="successMsg">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              <p>Thank you! We've received your message and will get back to you shortly.</p>
-            </div>
-
-          </form>
-
-        </div><!-- /contact-left-col -->
-
-
-        <!-- RIGHT — Map -->
-        <div class="contact-right-col">
-
-
-          <div class="map-container">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.957977226569!2d72.82843231489637!3d18.940120687168256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1c06fffffff%3A0x40f8eb17f6a2c0d8!2sMahatma%20Gandhi%20Road%2C%20Fort%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1621234567890!5m2!1sen!2sin"
-              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-              title="Studio Location">
-            </iframe>
-            <div class="map-overlay-badge">
-              <h5>Our Studio</h5>
-              <p>Heritage Arts Complex<br>Regal Building, M.G. Road<br>Mumbai – 400 001</p>
-            </div>
-          </div>
 
 
 
-        </div><!-- /contact-right-col -->
-
-      </div><!-- /contact-grid -->
-    </div><!-- /padding -->
-  </section>
 
 
-  <!-- footer — exact copy from about.html -->
-  <footer class="footer-space">
-    <div class="footer-parent">
-      <div class="padding-footer">
-        <div class="footer">
-          <div class="footer-logo">
-            <img src="./images/logo.png" alt="">
-            <p class="para">
-              The Institute of conservation (ICON)<br>
-              International Council of Museum (ICOM)<br>
-              IASC India
-            </p>
-          </div>
-          <div class="footer-contact">
-            <h4>CONTACT US:</h4>
-            <p class="para">3 Rockaway St., New Rochelle,<br>New York, United States – 10801</p>
-            <p class="para">Mon-Sat: 9:00am – 8pm</p>
-            <p class="para">+001 234 56 78</p>
-          </div>
-          <div class="footer-qr-parent">
-            <h4>DONATION:</h4>
-            <div class="footer-qr">
-              <img src="./images/qr.png" alt="">
-            </div>
-          </div>
-          <div class="footer-insta">
-            <h4>SOCIAL MEDIA:</h4>
-            <div class="footer-social-media">
-              <img src="./images/facebook.png" alt="">
-              <img src="./images/instagram.png" alt="">
-              <img src="./images/linkdine.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom-txt">
-          <span class="date">© My Company, 2026. All rights reserved.</span>
+              <div class="form-grp">
+                <label for="message">Your Message</label>
+                <textarea id="message" placeholder="Tell us about your project or enquiry…" required></textarea>
+              </div>
+
+        <button class="bookmarkBtn">
+            <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
+            <span class="bk-text">Send Message</span>
+        </button>
+
+              <div class="form-success-msg" id="successMsg">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <p>Thank you! We've received your message and will get back to you shortly.</p>
+              </div>
+
+            </form>
+
+          </div><!-- /contact-left-col -->
+
+
+          <!-- RIGHT — Map -->
+
+
+        </div><!-- /contact-grid -->
+      </div><!-- /padding -->
+      </div>
+    </section>
+
+    <div class="contact-right-col map-parent">
+
+
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d65405.409203512085!2d77.48879884842914!3d34.16630803948635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38fdeb21445fed85%3A0xd1bb09975086f710!2sLeh%20194101!5e1!3m2!1sen!2sin!4v1780395232573!5m2!1sen!2sin"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-overlay-badge">
+          <h5>Our Studio</h5>
+          <p>Heritage Arts Complex<br>Regal Building, M.G. Road<br>Mumbai – 400 001</p>
         </div>
       </div>
+
+
+
     </div>
-  </footer>
+
+    
+    </div>
 
 
-  <!-- Scripts — same as about.html -->
+
+
+    <!-- break section -->
+
+    <section class="support-brands-wrapper container-fluid">
+
+  <!-- Top Section -->
+  <div class="grievance-section">
+    <div class="grievance-card container">
+      <h2>Grievance Redressal</h2>
+      <p>
+        This is for escalations only. Please contact customer service first
+        to sort it out.
+      </p>
+        
+      <div class="break-btn">
+          <button class="bookmarkBtn">
+            <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
+            <span class="bk-text">Read More</span>
+        </button>
+
+          </div>
+    </div>
+  </div>
+  <div class="grievance-section">
+    <div class="grievance-card container">
+      <h2>Grievance Redressal</h2>
+      <p>
+        This is for escalations only. Please contact customer service first
+        to sort it out.
+      </p>
+
+          <div class="break-btn">
+          <button class="bookmarkBtn">
+            <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
+            <span class="bk-text">Read More</span>
+        </button>
+
+          </div>
+    </div>
+  </div>
+
+
+
+</section>
+
+<style>
+  .support-brands-wrapper{
+    /* min-height:100vh; */
+      background:var(--dark);
+    display:flex;
+    flex-direction:column;
+}
+
+/* TOP PART */
+.grievance-section{
+    /* height:35vh; */
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+   padding: 60px 0;
+}
+
+.grievance-card{
+    /* width:min(1400px,95%); */
+    background:var(--bg);
+    border-radius:25px;
+    text-align:center;
+    padding:40px 30px;
+}
+
+.grievance-card h2{
+    font-size:50px;
+    margin-bottom:20px;
+    font-style:normal;
+}
+
+.grievance-card p{
+    max-width:650px;
+    margin:auto;
+    /* font-size:18px; */
+    color:#333;
+    line-height:1.8;
+}
+
+.grievance-btn{
+    display:inline-block;
+    margin-top:35px;
+    background:#000;
+    color:#fff;
+    padding:18px 45px;
+    font-weight:700;
+    border-radius:6px;
+    transition:.3s;
+}
+
+.grievance-btn:hover{
+    transform:translateY(-3px);
+    color:#fff;
+}
+.break-btn{
+  margin-top: 35px;
+}
+
+</style>
+
+    
+     
+
+
+
+     
+
+    <!-- ─── SECTION 7: FOOTER ─── -->
+    <section class="fp-section" id="sec-footer"
+      style="justify-content:flex-end; background-image:url('hello.jpg'); background-size:cover; background-position:top;">
+      <div
+        style="flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px; background-color: rgba(0, 0, 0, 0.263)">
+        <div style="text-align:center;">
+  
+        </div>
+      </div>
+      <div class="footer-wrap">
+        <div class="container-xl">
+          <div class="footer-grid">
+            <div class="footer-logo-col">
+              <img src="images/logo2.png" alt="ARC Studio">
+              <div class="footer-social" style="margin-top: 15px">
+                <img src="images/facebook.png" alt="Facebook">
+                <img src="images/instagram.png" alt="Instagram">
+                <img src="images/linkdine.png" alt="LinkedIn">
+              </div>
+              <p class="footer-copy">© ARC Studio, 2026. All rights reserved.</p>
+
+            </div>
+            <div class="footer-contact-col">
+              <h4 style="font-size:20px;color: rgb(232, 232, 232);margin-bottom:14px;">Contact</h4>
+              <address>
+                Choskar House Gogsum,<br>
+                Old Town Leh, UT Ladakh,<br>
+                194101, India
+              </address>
+              <div class="footer-phone">
+                <img src="images/phone-call.png" alt="" style="height:14px;">
+                +91 6005570573
+              </div>
+
+            </div>
+            <div class="footer-links-col">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Become a Volunteer</a></li>
+             
+                <li><a href="contact.html">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="footer-qr-col">
+              <h4>Support Us</h4>
+              <div class="qr-img">
+                <img src="images/qr.png" alt="QR Code">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="./javascript/script.js"></script>
 
   <script>
-    /* form submit */
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const fname = document.getElementById('fname').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const msg   = document.getElementById('message').value.trim();
-      if (!fname || !email || !msg) {
-        ['fname','email','message'].forEach(id => {
-          const el = document.getElementById(id);
-          if (!el.value.trim()) {
-            el.style.borderBottomColor = '#c0392b';
-            el.addEventListener('input', () => el.style.borderBottomColor = '', { once: true });
-          }
-        });
-        return;
-      }
-      const btn = this.querySelector('.btn-submit');
-      btn.disabled = true;
-      btn.querySelector('span').textContent = 'Sending…';
-      setTimeout(() => {
-        document.getElementById('successMsg').classList.add('show');
-        btn.style.display = 'none';
-        this.reset();
-      }, 1100);
-    });
 
-    /* GSAP scroll animations */
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.from('.contact-main-heading', { opacity: 0, y: 35, duration: 1, ease: 'power3.out', delay: 0.15 });
-    gsap.from('.info-item', {
-      opacity: 0, x: -25, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '.info-list', start: 'top 82%' }
-    });
-    gsap.from('.map-container', {
-      opacity: 0, y: 30, duration: 0.9, ease: 'power3.out',
-      scrollTrigger: { trigger: '.map-container', start: 'top 85%' }
-    });
-    gsap.from('.hours-row', {
-      opacity: 0, x: 20, duration: 0.6, stagger: 0.1, ease: 'power3.out',
-      scrollTrigger: { trigger: '.hours-row', start: 'top 88%' }
+    // ─── OFFCANVAS ───
+    const menuToggle = document.getElementById('menuToggle');
+    const overlay = document.getElementById('offcanvasOverlay');
+    const panel = document.getElementById('offcanvasPanel');
+
+    function openMenu() {
+      panel.classList.add('is-open');
+      overlay.classList.add('is-open');
+      menuToggle.classList.add('is-open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      panel.classList.remove('is-open');
+      overlay.classList.remove('is-open');
+      menuToggle.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    menuToggle.addEventListener('click', () => panel.classList.contains('is-open') ? closeMenu() : openMenu());
+    overlay.addEventListener('click', closeMenu);
+
+    // Offcanvas links just navigate (no scroll logic needed)
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    // ─── OWL CAROUSEL ───
+    $(document).ready(function () {
+      const owl = $('#pc-owl').owlCarousel({
+        loop: true,
+        center: true,
+        margin: 20,
+        nav: false,
+        dots: false,
+        responsive: {
+          0: { items: 1 },
+          768: { items: 2 },
+          1200: { items: 3 }
+        }
+      });
+
+      document.getElementById('pc-prev').addEventListener('click', () => owl.trigger('prev.owl.carousel'));
+      document.getElementById('pc-next').addEventListener('click', () => owl.trigger('next.owl.carousel'));
     });
   </script>
-
 </body>
+
 </html>
+
+
+

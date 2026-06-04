@@ -14,9 +14,9 @@
 
   <style>
     :root {
-      --bg: #fef8db;
+      --bg: #EFE8E2;
       --gold: #d5a749;
-      --dark: #0c0c0c;
+      --dark: #3F3027;
       --muted: #565656;
       --card-bg: #f2f2f2;
       --white: #ffffff;
@@ -213,7 +213,7 @@
     .nav-right-area { display:flex; align-items:center; gap:24px; }
     .tata-support { display:flex; flex-direction:column; align-items:flex-end; }
     .tata-support span { font-size:11px; color:var(--muted); letter-spacing:0.05em; }
-    .tata-support img { height: 28px; width:auto; margin-top:2px; }
+    .tata-support img { height: 20px; width:auto; margin-top:2px; }
 
     .menu-toggle {
       background:none; border:none; cursor:pointer;
@@ -239,7 +239,7 @@
     /* ─── SECTION 1: HERO ─── */
     #sec-hero {
       height: 100vh;
-      background-image: url('images/Photos/0U5A6670.webp');
+      background-image: url('images/shesrig010A8945.jpeg');
       background-size:cover; background-position:center;
       flex-direction: column;
     }
@@ -387,15 +387,16 @@
     }
 
     .services-header-strip {
-      padding: 28px 0 20px;
+      padding: 0px 0px 20px 0px;
       display:flex; align-items:center; justify-content:space-between;
     }
 
     /* Services grid — inside container, images shorter */
     .services-grid {
-      display:grid; grid-template-columns:1fr 1fr;
+      display:flex;
       gap:20px;
       flex: 1;
+      height: 90%;
     }
     .service-item {
       position:relative; overflow:hidden;
@@ -444,7 +445,7 @@
     .services-inner {
       display: flex;
       flex-direction: column;
-      height: 90%;
+      height: 100%;
       padding: 0;
     }
 
@@ -528,7 +529,7 @@
     .event-card-parnet .event-card { padding: 0; }
 
     .event-right-img {
-      width: 100px;
+      width: 200px;
       flex-shrink: 0;
       overflow: hidden;
       border-radius: 6px;
@@ -632,21 +633,21 @@
 
     .blogs-inner {
       height: 100%;
-      display:flex; flex-direction:column; justify-content:center;
-      gap:28px;
-      padding: 28px 0;
+      display:flex; flex-direction:column; justify-content:space-between;
+      /* gap:20px; */
+      padding: 0px 0;
     }
 
     .blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 
     .blog-card {
-      background:var(--card-bg); border-radius:16px; overflow:hidden;
+      background: #7B5C4B; border-radius:16px; overflow:hidden;
       cursor:pointer; transition:transform 0.35s;
       padding:8px;
     }
     .blog-card:hover { transform:translateY(-8px) scale(1.02); }
 
-    .blog-card-img-wrap { height:400px; border-radius:12px; position:relative; }
+    .blog-card-img-wrap {  border-radius:12px; position:relative; }
     .blog-card-img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s; border-radius: 10px;}
 
     .blog-logo-badge {
@@ -657,14 +658,14 @@
     .blog-logo-badge img { width:80%; height:80%; object-fit:cover; }
 
     .blog-card-body { padding:28px 12px 12px; }
-    .blog-card-body h3 { font-size:20px; line-height:1.2; margin-bottom:8px; }
-    .blog-card-body p { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:14px; }
+    .blog-card-body h3 { font-size:20px; line-height:1.2; margin-bottom:8px; color: white}
+    .blog-card-body p { font-size:13px; color: white; line-height:1.6; margin-bottom:14px; }
 
     .blog-author { display:flex; align-items:center; gap:10px; }
     .author-avatar { width:34px; height:34px; border-radius:50%; overflow:hidden; }
     .author-avatar img { width:100%; height:100%; object-fit:cover; }
-    .author-info .name { font-size:13px; font-weight:600; color:var(--dark); }
-    .author-info .date { font-size:11px; color:var(--muted); }
+    .author-info .name { font-size:13px; font-weight:600; color: white; }
+    .author-info .date { font-size:11px; color: white; }
     .blog-card:hover h3 { color:var(--gold); }
 
     /* ─── SECTION 7: FOOTER ─── */
@@ -675,7 +676,7 @@
     }
 
     .footer-wrap {
-      background: var(--card-bg);
+      background-color: #c0ab9a;
       border-top-left-radius: 24px;
       border-top-right-radius: 24px;
       padding: 40px 0 24px;
@@ -691,13 +692,13 @@
     .footer-social { display:flex; gap:12px; margin-top:14px; }
     .footer-social img { height:20px; }
 
-    .footer-links-col h4 { font-size:18px; color:var(--gold); margin-bottom:16px; }
+    .footer-links-col h4 { font-size:20px; color: rgb(232, 232, 232); margin-bottom:16px; }
     .footer-links-col ul { list-style:none; padding: 0 }
     .footer-links-col ul li { margin-bottom:8px; }
     .footer-links-col ul li a { font-size:14px; color:var(--muted); transition:color 0.2s; }
     .footer-links-col ul li a:hover { color:var(--gold); }
 
-    .footer-qr-col h4 { font-size:18px; color:var(--gold); margin-bottom:14px; text-align:left; }
+    .footer-qr-col h4 { font-size:20px; color: rgb(232, 232, 232); margin-bottom:14px; text-align:left; }
     .footer-qr-col .qr-img { height:120px; width:120px;}
     .footer-qr-col .qr-img img { width:100%; height:100%; object-fit:cover; }
 
@@ -743,7 +744,7 @@
       <li><a href="about.html"><span class="nav-num">02</span>About</a></li>
       <li><a href="services.html"><span class="nav-num">03</span>Services</a></li>
       <li><a href="projects.html"><span class="nav-num">04</span>Projects</a></li>
-      <li><a href="media.html"><span class="nav-num">05</span>Media &amp; Publications</a></li>
+      <li><a href="events.html"><span class="nav-num">05</span>Media &amp; Publications</a></li>
       <li><a href="blogs.html"><span class="nav-num">06</span>Blogs</a></li>
       <li><a href="contact.html"><span class="nav-num">07</span>Contact</a></li>
     </ul>
@@ -796,7 +797,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="projects.html">Projects</a></li>
-        <li><a href="media.html">Media</a></li>
+        <li><a href="./news.html">Media</a></li>
         <li><a href="blogs.html">Blogs</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -805,9 +806,9 @@
           <span>Supported By</span>
           <img src="images/tata.png" alt="Tata Trusts">
         </div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <!-- <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
-        </button>
+        </button> -->
       </div>
     </header>
 
@@ -836,11 +837,11 @@
 
   <!-- ─── SECTION 2: ABOUT ─── -->
   <section class="fp-section" id="sec-about">
-    <div class="container-xl h-100 d-flex align-items-center">
+    <div class="container-xl h-100 d-flex align-items-center" style="padding: 100px 0px">
       <div class="about-grid w-100">
         <div class="about-img-wrap">
           <div class="about-img-accent"></div>
-          <img src="images/Photos/F4.webp" alt="ARC Studio workspace">
+          <img src="images/Photos/3. Choskor House_Shesrig Studio.jpg" alt="ARC Studio workspace">
         </div>
         <div class="about-text-side">
           <div class="section-eyebrow">Our Story</div>
@@ -862,7 +863,7 @@
 
   <!-- ─── SECTION 3: SERVICES ─── -->
   <section class="fp-section" id="sec-services">
-    <div class="container-xl h-100" style="display: flex; align-items: center;">
+    <div class="container-xl" style="display: flex; align-items: center; height: 100%; padding: 100px 0px">
       <div class="services-inner">
         <div class="services-header-strip">
           <div>
@@ -875,7 +876,7 @@
 
         <div class="services-grid">
           <div class="service-item">
-            <img src="images/Photos/0U5A6666.webp" alt="Art Restoration">
+            <img src="images/Photos/HZ16_040_UIL.JPG" alt="Art Restoration">
             <div class="service-overlay">
               <div class="service-num">01</div>
               <div class="service-name">Art Restoration</div>
@@ -884,7 +885,25 @@
             </div>
           </div>
           <div class="service-item">
-            <img src="images/Photos/0U5A6660.webp" alt="Preventive Conservation">
+            <img src="images/Photos/0U5A5223.jpg" alt="Preventive Conservation">
+            <div class="service-overlay">
+              <div class="service-num">02</div>
+              <div class="service-name">Preventive Conservation</div>
+              <p class="service-desc">Long-term strategies to protect artworks from environmental damage, light exposure, humidity fluctuations and biological threats before they cause harm.</p>
+              <a class="service-link-btn" href="services.html">Explore Service →</a>
+            </div>
+          </div>
+          <div class="service-item">
+            <img src="images/Photos/0U5A5121.jpg" alt="Preventive Conservation">
+            <div class="service-overlay">
+              <div class="service-num">02</div>
+              <div class="service-name">Preventive Conservation</div>
+              <p class="service-desc">Long-term strategies to protect artworks from environmental damage, light exposure, humidity fluctuations and biological threats before they cause harm.</p>
+              <a class="service-link-btn" href="services.html">Explore Service →</a>
+            </div>
+          </div>
+          <div class="service-item">
+            <img src="images/Photos/_MG_0593.jpg" alt="Preventive Conservation">
             <div class="service-overlay">
               <div class="service-num">02</div>
               <div class="service-name">Preventive Conservation</div>
@@ -897,9 +916,119 @@
     </div>
   </section>
 
+
+    <!-- ─── SECTION 5: PROJECTS ─── -->
+  <section class="fp-section" id="sec-projects">
+    <div class="container-xl h-100" style: padding: 100px 0px; display: flex; align-items: center;">
+      <div class="projects-inner">
+        <div class="d-flex align-items-end justify-content-between">
+          <div>
+            <div class="section-eyebrow">Portfolio</div>
+            <h2 class="section-heading" style="color:var(--white);">Our Projects</h2>
+            <p class="section-para">Every painting tells a story — we bring that story back to life.</p>
+          </div>
+          <div class="pc-controls">
+            <button class="pc-btn" id="pc-prev" aria-label="Previous">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg>
+            </button>
+            <button class="pc-btn" id="pc-next" aria-label="Next">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="owl-carousel owl-theme" id="pc-owl">
+          <div class="item">
+            <div class="pc-card">
+              <div class="pc-card-img">
+                <img src="images/Photos/0U5A6670.webp" alt="Portrait of a Noblewoman">
+                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
+              </div>
+              <div class="pc-card-body">
+                <div class="pc-card-tag"><span>Oil on Canvas</span></div>
+                <div class="pc-card-title"><h3>Portrait of a Noblewoman</h3></div>
+                <div class="pc-card-desc"><p>18th century, attributed to the Venetian school. Full conservation &amp; revarnishing.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="pc-card">
+              <div class="pc-card-img">
+                <img src="images/Photos/0U5A5305.webp" alt="Madonna con Bambino">
+                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
+              </div>
+              <div class="pc-card-body">
+                <div class="pc-card-tag"><span>Tempera on Panel</span></div>
+                <div class="pc-card-title"><h3>Madonna con Bambino</h3></div>
+                <div class="pc-card-desc"><p>15th century religious work. Structural consolidation and surface cleaning.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="pc-card">
+              <div class="pc-card-img">
+                <img src="images/Photos/0U5A6535.webp" alt="Storm Over the Harbour">
+                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
+              </div>
+              <div class="pc-card-body">
+                <div class="pc-card-tag"><span>Oil on Canvas</span></div>
+                <div class="pc-card-title"><h3>Storm Over the Harbour</h3></div>
+                <div class="pc-card-desc"><p>19th century maritime scene. Canvas relining and varnish removal.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="pc-card">
+              <div class="pc-card-img">
+                <img src="/images/Photos/0U5A6660.webp" alt="Garden at Giverny">
+                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
+              </div>
+              <div class="pc-card-body">
+                <div class="pc-card-tag"><span>Oil on Canvas</span></div>
+                <div class="pc-card-title"><h3>Garden at Giverny</h3></div>
+                <div class="pc-card-desc"><p>Impressionist study. In-painting and protective varnish application.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="pc-card">
+              <div class="pc-card-img">
+                <img src="images/Photos/0U5A6664.webp" alt="The Annunciation">
+                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
+              </div>
+              <div class="pc-card-body">
+                <div class="pc-card-tag"><span>Egg Tempera</span></div>
+                <div class="pc-card-title"><h3>The Annunciation</h3></div>
+                <div class="pc-card-desc"><p>Byzantine iconographic tradition. Gold leaf restoration and consolidation.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="pc-card">
+              <div class="pc-card-img">
+                <img src="images/Photos/0U5A6666.webp" alt="Self-Portrait with Palette">
+                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
+              </div>
+              <div class="pc-card-body">
+                <div class="pc-card-tag"><span>Oil on Canvas</span></div>
+                <div class="pc-card-title"><h3>Self-Portrait with Palette</h3></div>
+                <div class="pc-card-desc"><p>Early 20th century. Tear repair and chromatic reintegration.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="strip" style="border-color:rgba(255,255,255,0.15);">
+          <span style="font-size:13px;color:rgba(255,255,255,0.4);">Showing 6 of 48 projects</span>
+          <button class="strip-cta" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.4);">View All Projects &nbsp;→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── SECTION 4: MEDIA & PUBLICATIONS ─── -->
   <section class="fp-section" id="sec-media">
-    <div class="container-xl h-100" style="display: flex; align-items: center;">
+    <div class="container-xl h-100" style="display: flex; align-items: center; padding: 100px 0px">
       <div class="media-section-inner">
 
         <div class="events-heading">
@@ -998,118 +1127,16 @@
     </div>
   </section>
 
-  <!-- ─── SECTION 5: PROJECTS ─── -->
-  <section class="fp-section" id="sec-projects">
-    <div class="container-xl h-100">
-      <div class="projects-inner">
-        <div class="d-flex align-items-end justify-content-between">
-          <div>
-            <div class="section-eyebrow">Portfolio</div>
-            <h2 class="section-heading" style="color:var(--white);">Our Projects</h2>
-            <p class="section-para">Every painting tells a story — we bring that story back to life.</p>
-          </div>
-          <div class="pc-controls">
-            <button class="pc-btn" id="pc-prev" aria-label="Previous">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg>
-            </button>
-            <button class="pc-btn" id="pc-next" aria-label="Next">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg>
-            </button>
-          </div>
-        </div>
 
-        <div class="owl-carousel owl-theme" id="pc-owl">
-          <div class="item">
-            <div class="pc-card">
-              <div class="pc-card-img">
-                <img src="images/Photos/0U5A6670.webp" alt="Portrait of a Noblewoman">
-                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
-              </div>
-              <div class="pc-card-body">
-                <div class="pc-card-tag"><span>Oil on Canvas</span></div>
-                <div class="pc-card-title"><h3>Portrait of a Noblewoman</h3></div>
-                <div class="pc-card-desc"><p>18th century, attributed to the Venetian school. Full conservation &amp; revarnishing.</p></div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="pc-card">
-              <div class="pc-card-img">
-                <img src="images/Photos/0U5A5305.webp" alt="Madonna con Bambino">
-                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
-              </div>
-              <div class="pc-card-body">
-                <div class="pc-card-tag"><span>Tempera on Panel</span></div>
-                <div class="pc-card-title"><h3>Madonna con Bambino</h3></div>
-                <div class="pc-card-desc"><p>15th century religious work. Structural consolidation and surface cleaning.</p></div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="pc-card">
-              <div class="pc-card-img">
-                <img src="images/Photos/0U5A6535.webp" alt="Storm Over the Harbour">
-                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
-              </div>
-              <div class="pc-card-body">
-                <div class="pc-card-tag"><span>Oil on Canvas</span></div>
-                <div class="pc-card-title"><h3>Storm Over the Harbour</h3></div>
-                <div class="pc-card-desc"><p>19th century maritime scene. Canvas relining and varnish removal.</p></div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="pc-card">
-              <div class="pc-card-img">
-                <img src="images/Photos/0U5A6660.webp" alt="Garden at Giverny">
-                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
-              </div>
-              <div class="pc-card-body">
-                <div class="pc-card-tag"><span>Oil on Canvas</span></div>
-                <div class="pc-card-title"><h3>Garden at Giverny</h3></div>
-                <div class="pc-card-desc"><p>Impressionist study. In-painting and protective varnish application.</p></div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="pc-card">
-              <div class="pc-card-img">
-                <img src="images/Photos/0U5A6664.webp" alt="The Annunciation">
-                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
-              </div>
-              <div class="pc-card-body">
-                <div class="pc-card-tag"><span>Egg Tempera</span></div>
-                <div class="pc-card-title"><h3>The Annunciation</h3></div>
-                <div class="pc-card-desc"><p>Byzantine iconographic tradition. Gold leaf restoration and consolidation.</p></div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="pc-card">
-              <div class="pc-card-img">
-                <img src="images/Photos/0U5A6666.webp" alt="Self-Portrait with Palette">
-                <div class="pc-card-overlay"><span class="pc-overlay-link">View Work</span></div>
-              </div>
-              <div class="pc-card-body">
-                <div class="pc-card-tag"><span>Oil on Canvas</span></div>
-                <div class="pc-card-title"><h3>Self-Portrait with Palette</h3></div>
-                <div class="pc-card-desc"><p>Early 20th century. Tear repair and chromatic reintegration.</p></div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="strip" style="border-color:rgba(255,255,255,0.15);">
-          <span style="font-size:13px;color:rgba(255,255,255,0.4);">Showing 6 of 48 projects</span>
-          <button class="strip-cta" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.4);">View All Projects &nbsp;→</button>
-        </div>
-      </div>
-    </div>
-  </section>
+
+
+
+
 
   <!-- ─── SECTION 6: BLOGS ─── -->
   <section class="fp-section" id="sec-blogs">
-    <div class="container-xl h-100">
+    <div class="container-xl h-100" style="padding: 100px 0px; display: flex; align-items: center;">
       <div class="blogs-inner">
         <div class="sec-header">
           <div class="section-eyebrow">Latest Articles</div>
@@ -1178,16 +1205,16 @@
   </section>
 
   <!-- ─── SECTION 7: FOOTER ─── -->
-  <section class="fp-section" id="sec-footer" style="justify-content:flex-end;">
-    <div style="flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+  <section class="fp-section" id="sec-footer" style="justify-content:flex-end; background-image:url('hello.jpg'); background-size:cover; background-position:top;">
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px; background-color: rgba(0, 0, 0, 0.263)">
       <div style="text-align:center;">
-        <div class="section-eyebrow">Get In Touch</div>
+        <!-- <div class="section-eyebrow" style="">Get In Touch</div>
         <h2 style="font-size:clamp(36px,4vw,60px);line-height:1.1;margin-bottom:16px;">Let's Preserve<br>History Together</h2>
         <p style="font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 28px;">Have a piece that needs attention? We'd love to hear about it. Reach out for a consultation.</p>
         <button class="bookmarkBtn" style="margin:0 auto;">
           <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
           <span class="bk-text">Contact Us</span>
-        </button>
+        </button> -->
       </div>
     </div>
     <div class="footer-wrap">
@@ -1195,10 +1222,16 @@
         <div class="footer-grid">
           <div class="footer-logo-col">
             <img src="images/logo2.png" alt="ARC Studio">
+            <div class="footer-social" style="margin-top: 15px">
+              <img src="images/facebook.png" alt="Facebook">
+              <img src="images/instagram.png" alt="Instagram">
+              <img src="images/linkdine.png" alt="LinkedIn">
+            </div>
             <p class="footer-copy">© ARC Studio, 2026. All rights reserved.</p>
+            
           </div>
           <div class="footer-contact-col">
-            <h4 style="font-size:18px;color:var(--gold);margin-bottom:14px;">Contact</h4>
+            <h4 style="font-size:20px;color: rgb(232, 232, 232);margin-bottom:14px;">Contact</h4>
             <address>
               Choskar House Gogsum,<br>
               Old Town Leh, UT Ladakh,<br>
@@ -1208,20 +1241,16 @@
               <img src="images/phone-call.png" alt="" style="height:14px;">
               +91 6005570573
             </div>
-            <div class="footer-social">
-              <img src="images/facebook.png" alt="Facebook">
-              <img src="images/instagram.png" alt="Instagram">
-              <img src="images/linkdine.png" alt="LinkedIn">
-            </div>
+
           </div>
           <div class="footer-links-col">
             <h4>Quick Links</h4>
             <ul>
               <li><a href="about.html">About Us</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="projects.html">Projects</a></li>
-              <li><a href="blogs.html">Blogs</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="services.html">Become a Volunteer</a></li>
+              <!-- <li><a href="projects.html">Projects</a></li> -->
+              <!-- <li><a href="blogs.html">Blogs</a></li> -->
+              <li><a href="contact.html">Contact Us</a></li>
             </ul>
           </div>
           <div class="footer-qr-col">
@@ -1231,10 +1260,7 @@
             </div>
           </div>
         </div>
-        <div class="footer-divider"></div>
-        <div class="footer-bottom">
-          <span>Supported by <strong style="color:var(--gold);">Tata Trusts</strong> &nbsp;·&nbsp; Designed with care for heritage preservation</span>
-        </div>
+
       </div>
     </div>
   </section>
