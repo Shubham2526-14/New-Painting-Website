@@ -741,368 +741,6 @@ body {
 
 
 
-    /* contact css */
-
-        .contact-main-heading {
-      font-size: 60px;
-      font-weight: 300;
-      color: var(--heading-color);
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-
-    .contact-intro-para {
-      margin-bottom: 45px;
-    }
-
-    /* info blocks */
-    .info-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-bottom: 20px;
-    }
-
-    .info-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      padding: 22px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .info-item:first-child {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .info-icon-wrap {
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--logo-color);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0.8;
-    }
-
-    .info-icon-wrap svg {
-      width: 17px;
-      height: 17px;
-      stroke: var(--logo-color);
-      fill: none;
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .info-content h5 {
-      font-size: 16px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-
-    }
-
-    .info-content p {
-      font-size: 15px;
-      font-weight: 300;
-      color: var(--heading-color);
-      opacity: 0.72;
-      line-height: 1.75;
-    }
-
-    /* social row */
-    .contact-social-row {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 55px;
-    }
-
-    .contact-social-row a {
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(1, 1, 1, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: border-color 0.3s, background 0.3s;
-    }
-
-    .contact-social-row a:hover {
-      border-color: var(--logo-color);
-    }
-
-    .contact-social-row svg {
-      width: 14px;
-      height: 14px;
-      stroke: rgba(0, 0, 0, 0.5);
-      fill: none;
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: stroke 0.3s;
-    }
-
-    .contact-social-row a:hover svg {
-      stroke: var(--logo-color);
-    }
-
-    /* ─── FORM ─── */
-    .form-section-heading {
-      font-size: 32px;
-      font-weight: 300;
-      color: var(--heading2-color);
-      margin-bottom: 28px;
-      letter-spacing: 0.02em;
-    }
-
-    .form-section-heading span {
-      color: var(--logo-color);
-    }
-
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    .form-row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .form-grp {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .form-grp label {
-      font-size: 10px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: rgba(17, 17, 17, 0.45);
-      font-weight: 400;
-    }
-
-    .form-grp input,
-    .form-grp textarea,
-    .form-grp select {
-      background: rgba(255, 255, 255, 0.04);
-      border: none;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.18);
-      color: var(--heading-color);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      font-weight: 300;
-      padding: 12px 0;
-      outline: none;
-      transition: border-color 0.3s;
-      width: 100%;
-      resize: none;
-    }
-
-    .form-grp input:focus,
-    .form-grp textarea:focus,
-    .form-grp select:focus {
-      border-bottom-color: var(--logo-color);
-    }
-
-    .form-grp input::placeholder,
-    .form-grp textarea::placeholder {
-      color: rgba(255, 255, 255, 0.2);
-    }
-
-    .form-grp select option {
-      background: #1a1410;
-    }
-
-    .form-grp textarea {
-      min-height: 120px;
-      padding-top: 10px;
-    }
-
-    /* submit button — same gold outline style as the rest of site */
-    .btn-submit {
-      align-self: flex-start;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 36px;
-      background: transparent;
-      border: 1px solid var(--logo-color);
-      color: var(--logo-color);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: color 0.35s;
-    }
-
-    .btn-submit::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--logo-color);
-      transform: translateX(-101%);
-      transition: transform 0.4s cubic-bezier(.77, 0, .18, 1);
-      z-index: 0;
-    }
-
-    .btn-submit:hover::before {
-      transform: translateX(0);
-    }
-
-    .btn-submit:hover {
-      color: #0d0d0d;
-    }
-
-    .btn-submit span,
-    .btn-submit svg {
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn-submit svg {
-      width: 15px;
-      height: 15px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: transform 0.3s;
-    }
-
-    .btn-submit:hover svg {
-      transform: translateX(5px);
-    }
-
-    .form-success-msg {
-      display: none;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 20px;
-      border: 1px solid var(--logo-color);
-      margin-top: 8px;
-    }
-
-    .form-success-msg.show {
-      display: flex;
-    }
-
-    .form-success-msg svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--logo-color);
-      fill: none;
-      stroke-width: 1.8;
-      flex-shrink: 0;
-    }
-
-    .form-success-msg p {
-      font-size: 15px;
-      font-weight: 300;
-      opacity: 0.8;
-    }
-
-    /* ─── RIGHT COLUMN – Map ─── */
-    .contact-right-col {
-      position: sticky;
-      top: 100px;
-    }
-
-
-    .map-container {
-      width: 100%;
-      height: 400px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      filter: grayscale(25%);
-    }
-
-    .map-overlay-badge {
-      position: absolute;
-      bottom: 18px;
-      left: 18px;
-      background: rgba(255, 255, 255, 0.88);
-      border-left: 3px solid var(--logo-color);
-      padding: 14px 18px;
-      backdrop-filter: blur(8px);
-    }
-
-    .map-overlay-badge h5 {
-      font-size: 10px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--logo-color);
-      margin-bottom: 5px;
-    }
-
-    .map-overlay-badge p {
-      font-size: 13px;
-      font-weight: 300;
-      opacity: 0.75;
-      line-height: 1.7;
-    }
-
-    /* hours */
-    .hours-title {
-      font-size: 10px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--logo-color);
-      margin: 30px 0 14px;
-    }
-
-    .hours-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    .hours-row:first-of-type {
-      border-top: 1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    .hours-day {
-      font-size: 15px;
-      font-weight: 300;
-      opacity: 0.7;
-    }
-
-    .hours-time {
-      font-size: 14px;
-      color: var(--logo-color);
-      letter-spacing: 0.04em;
-    }
-
-    .hours-closed {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: var(--logo-color);
-      color: #0d0d0d;
-      padding: 3px 9px;
-      font-weight: 500;
-    }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1050px) {
@@ -1272,16 +910,16 @@ body {
 
       <div class="hero-overlay">
         <div class="hero-content">
-          <div
+          <!-- <div
             style="font-size:12px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;opacity:0.9;">
-            Est. 2014 · Mumbai, India</div>
-          <h1>Art Restoration &<br>Conservation Studio</h1>
-          <p>Dedicated conservators committed to the cause of fine art restoration with emphasis on preventive care and
-            minimal intervention.</p>
-          <button class="bookmarkBtn">
+            Est. 2014 · Mumbai, India</div> -->
+          <h1>Media & Publications</h1>
+          <!-- <p>Dedicated conservators committed to the cause of fine art restoration with emphasis on preventive care and
+            minimal intervention.</p> -->
+          <!-- <button class="bookmarkBtn">
             <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
             <span class="bk-text">Read More</span>
-          </button>
+          </button> -->
           <!-- <button class="hero-cta" onclick="scrollToSection(1)">
           Discover Our Work
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -1545,7 +1183,8 @@ body {
         .event-package{
         
             /* height: 500px; */
-                background-color:#f4f6f9;
+                background-color:#7B5C4B;
+;
                  transition:transform 0.35s;
                  border-radius: 8px;
                  overflow: hidden;
@@ -1563,7 +1202,7 @@ body {
 }
 
         .event-package-date{
-           color: #747474;
+           color: #cdcdcd;
            font-size: 15px;
            
         }
@@ -1579,6 +1218,13 @@ body {
   
         .date-text-parent{
             padding: 15px;
+        }
+        .date-text-parent h3,.txt-btn{
+           color: #ffffff;
+        }
+  
+        .date-text-parent .txt-btn {
+           border-bottom: 1px solid #ffffff;
         }
   
         .event-package-img{
@@ -1606,7 +1252,7 @@ body {
         }
         .event-package-text h3:hover{
             text-decoration: underline;
-            text-decoration-color: black;
+       
          
             
         }
