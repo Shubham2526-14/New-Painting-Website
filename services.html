@@ -366,6 +366,113 @@ body {
       width: 28px;
     }
 
+
+
+/* services drop down design */
+
+.custom-dropdown{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+
+    min-width: 280px;
+    padding: 14px 0;
+
+      background-color: var(--dark);
+
+
+    border-radius: 14px;
+    list-style: none;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.18),
+    0 5px 15px rgba(0,0,0,.1);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all .35s ease;
+
+    z-index: 999;
+}
+
+.dropdown-menu-parent:hover .custom-dropdown{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(8px);
+}
+
+/* top arrow */
+.custom-dropdown::before{
+    content:"";
+    position:absolute;
+    top:-8px;
+    left:50%;
+    width:16px;
+    height:16px;
+    background:#7B5C4B;
+    transform:translateX(-50%) rotate(45deg);
+}
+
+
+
+.custom-dropdown li a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:14px 22px;
+
+    color:#F7F0EA;
+    font-size:14px;
+    letter-spacing:.3px;
+
+    transition:.3s;
+}
+
+/* Golden dot */
+.custom-dropdown li a::before{
+    content:"✦";
+    color:#D5A749;
+    font-size:8px;
+    transition:.3s;
+}
+
+.custom-dropdown li{
+    border-bottom: 1px solid rgba(213, 166, 73, 0.192);
+}
+
+.custom-dropdown li:last-child{
+    border-bottom: none;
+}
+
+/* Right arrow */
+
+
+.custom-dropdown li a:hover{
+    background:rgba(255,255,255,.06);
+    padding-left:30px;
+}
+
+.custom-dropdown li a:hover::before{
+    transform:rotate(180deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
     /* ─── FULLPAGE SECTIONS — account for navbar now being in-flow ─── */
     /* Each section is still 100vh. The navbar is inside .fp-section for hero,
        and for other sections we use padding-top to push content below a sticky
@@ -891,7 +998,20 @@ body {
         <ul class="nav-links">
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
+          <!-- <li><a href="services.html">Services</a></li> -->
+<li class="dropdown-menu-parent">
+  <a href="services.html">Services</a>
+
+  <ul class="custom-dropdown">
+    <li><a href="#services-one">Painting Restoration</a></li>
+    <li><a href="#services-two">Paper Conservation</a></li>
+    <li><a href="#services-three">Preventive Conservation</a></li>
+    <li><a href="#services-four">Mural Conservation</a></li>
+    <li><a href="#services-five">Sculpture Restoration</a></li>
+    <li><a href="#services-six">Collection Care</a></li>
+    <li><a href="#services-seven">Condition Assessment</a></li>
+  </ul>
+</li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="news.html">Media</a></li>
           <li><a href="blogs.html">Blogs</a></li>
@@ -944,7 +1064,7 @@ body {
 
 
     <div class="services-parent container">
-  <div class="services">
+  <div class="services" id="services-one">
     <div class="services-text">
       <div class="services-section-heading">
         <h3 class="short-heading">
@@ -959,10 +1079,10 @@ body {
 
       </div>
          <div class="services-button">
-      <button class="bookmarkBtn">
+      <!-- <button class="bookmarkBtn">
             <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
             <span class="bk-text">Read More</span>
-        </button>
+        </button> -->
     </div>
     </div>
     <div class="services-img-parent">
@@ -977,7 +1097,7 @@ body {
 
 
 
-  <div class="services">
+  <div class="services" id="services-two">
      <div class="services-img-parent">
       <div class="services-img">
         <img src="./images/Photos/0U5A6660.webp" alt="">
@@ -998,10 +1118,10 @@ body {
 
       </div>
          <div class="services-button">
-        <button class="bookmarkBtn">
+        <!-- <button class="bookmarkBtn">
             <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
             <span class="bk-text">Read More</span>
-        </button>
+        </button> -->
     </div>
     </div>
   
@@ -1011,7 +1131,7 @@ body {
 
 
   
-  <div class="services">
+  <div class="services" id="services-three">
     <div class="services-text">
       <div class="services-section-heading">
         <h3 class="short-heading">
@@ -1026,10 +1146,145 @@ body {
 
       </div>
          <div class="services-button">
-       <button class="bookmarkBtn">
+       <!-- <button class="bookmarkBtn">
             <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
             <span class="bk-text">Read More</span>
-        </button>
+        </button> -->
+    </div>
+    </div>
+    <div class="services-img-parent">
+      <div class="services-img">
+        <img src="./images/Photos/0U5A6664.webp" alt="">
+      </div>
+      
+    </div>
+
+ 
+  </div>
+
+    <div class="services" id="services-four">
+     <div class="services-img-parent">
+      <div class="services-img">
+        <img src="./images/Photos/0U5A6660.webp" alt="">
+      </div>
+      
+    </div>
+    <div class="services-text">
+      <div class="services-section-heading">
+        <h3 class="short-heading">
+          Art Restoration
+        </h3>
+        
+      </div>
+      <div class="our-story-para">
+    
+        <p class="para">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum inventore eum odio molestias ea mollitia, doloremque cumque corrupti ipsam nisi quia tenetur quam suscipit ducimus modi laboriosam, necessitatibus veniam itaque!.</p>
+
+
+      </div>
+         <div class="services-button">
+        <!-- <button class="bookmarkBtn">
+            <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
+            <span class="bk-text">Read More</span>
+        </button> -->
+    </div>
+    </div>
+  
+
+ 
+  </div>
+
+
+
+    <div class="services" id="services-five">
+    <div class="services-text">
+      <div class="services-section-heading">
+        <h3 class="short-heading">
+          Art Restoration
+        </h3>
+        
+      </div>
+      <div class="our-story-para">
+    
+        <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores nam quia quis dolor magnam inventore ipsum provident rem aliquid laboriosam. Provident, expedita sit.</p>
+        <p class="para para-padding">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur, obcaecati? Debitis iste officiis repudiandae dicta odit adipisci iusto ut consequuntur magni ullam qui itaque asperiores sint perferendis, voluptate quia distinctio? </p>
+
+      </div>
+         <div class="services-button">
+       <!-- <button class="bookmarkBtn">
+            <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
+            <span class="bk-text">Read More</span>
+        </button> -->
+    </div>
+    </div>
+    <div class="services-img-parent">
+      <div class="services-img">
+        <img src="./images/Photos/0U5A6664.webp" alt="">
+      </div>
+      
+    </div>
+
+ 
+  </div>
+
+
+
+
+      <div class="services" id="services-six">
+     <div class="services-img-parent">
+      <div class="services-img">
+        <img src="./images/Photos/0U5A6660.webp" alt="">
+      </div>
+      
+    </div>
+    <div class="services-text">
+      <div class="services-section-heading">
+        <h3 class="short-heading">
+          Art Restoration
+        </h3>
+        
+      </div>
+      <div class="our-story-para">
+    
+        <p class="para">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum inventore eum odio molestias ea mollitia, doloremque cumque corrupti ipsam nisi quia tenetur quam suscipit ducimus modi laboriosam, necessitatibus veniam itaque!.</p>
+
+
+      </div>
+         <div class="services-button">
+        <!-- <button class="bookmarkBtn">
+            <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
+            <span class="bk-text">Read More</span>
+        </button> -->
+    </div>
+    </div>
+  
+
+ 
+  </div>
+
+
+
+
+  
+    <div class="services" id="services-seven">
+    <div class="services-text">
+      <div class="services-section-heading">
+        <h3 class="short-heading">
+          Art Restoration
+        </h3>
+        
+      </div>
+      <div class="our-story-para">
+    
+        <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores nam quia quis dolor magnam inventore ipsum provident rem aliquid laboriosam. Provident, expedita sit.</p>
+        <p class="para para-padding">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur, obcaecati? Debitis iste officiis repudiandae dicta odit adipisci iusto ut consequuntur magni ullam qui itaque asperiores sint perferendis, voluptate quia distinctio? </p>
+
+      </div>
+         <div class="services-button">
+       <!-- <button class="bookmarkBtn">
+            <span class="IconContainer"><img src="images/svg logo.svg" alt=""></span>
+            <span class="bk-text">Read More</span>
+        </button> -->
     </div>
     </div>
     <div class="services-img-parent">
@@ -1055,18 +1310,21 @@ body {
 
 
 .services-parent{
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
 }
 
 .services{
   display: flex;
   gap: 45px;
-  padding-bottom: 100px;
+  padding: 50px 0px;
+      height: 100vh;
+
 }
-.services-parent .services:nth-last-child(1) {
-  padding-bottom: 0px; /* jo tumhe chahiye */
-}
+/* .services-parent .services:nth-last-child(1) {
+  padding-bottom: 0px; 
+} */
 .services-text{
   width: 50%;
   display: flex;
@@ -1074,11 +1332,14 @@ body {
   justify-content: center;
 }
 .services-img-parent{
+  height: 100%;
   width: 50%;
 }
 .services-img{
 
-  height: 650px;
+  height: 100%;
+
+  
 }
 .services-img img{
   height: 100%;

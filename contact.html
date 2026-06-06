@@ -366,6 +366,106 @@ body {
       width: 28px;
     }
 
+
+    /* services drop down design */
+
+.custom-dropdown{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+
+    min-width: 280px;
+    padding: 14px 0;
+
+           background-color: var(--dark);
+
+
+
+    border-radius: 14px;
+    list-style: none;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.18),
+    0 5px 15px rgba(0,0,0,.1);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all .35s ease;
+
+    z-index: 999;
+}
+
+.dropdown-menu-parent:hover .custom-dropdown{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(8px);
+}
+
+/* top arrow */
+.custom-dropdown::before{
+    content:"";
+    position:absolute;
+    top:-8px;
+    left:50%;
+    width:16px;
+    height:16px;
+    background:#7B5C4B;
+    transform:translateX(-50%) rotate(45deg);
+}
+
+
+
+.custom-dropdown li a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:14px 22px;
+
+    color:#F7F0EA;
+    font-size:14px;
+    letter-spacing:.3px;
+
+    transition:.3s;
+}
+
+/* Golden dot */
+.custom-dropdown li a::before{
+    content:"✦";
+    color:#D5A749;
+    font-size:8px;
+    transition:.3s;
+}
+
+.custom-dropdown li{
+    border-bottom: 1px solid rgba(213, 166, 73, 0.192);
+}
+
+.custom-dropdown li:last-child{
+    border-bottom: none;
+}
+
+/* Right arrow */
+
+
+.custom-dropdown li a:hover{
+    background:rgba(255,255,255,.06);
+    padding-left:30px;
+}
+
+.custom-dropdown li a:hover::before{
+    transform:rotate(180deg);
+}
+
+
+
+
+
+
     /* ─── FULLPAGE SECTIONS — account for navbar now being in-flow ─── */
     /* Each section is still 100vh. The navbar is inside .fp-section for hero,
        and for other sections we use padding-top to push content below a sticky
@@ -746,13 +846,13 @@ body {
 
     /* contact css */
 
-        .contact-main-heading {
+        /* .contact-main-heading {
       font-size: 60px;
       font-weight: 300;
       color: var(--heading-color);
       line-height: 1.1;
       margin-bottom: 20px;
-    }
+    } */
 
 
     .contact-intro-para {
@@ -760,26 +860,26 @@ body {
     }
 
     /* info blocks */
-    .info-list {
+    /* .info-list {
       display: flex;
       flex-direction: column;
       gap: 0;
       margin-bottom: 20px;
-    }
+    } */
 
-    .info-item {
+    /* .info-item {
       display: flex;
       align-items: flex-start;
       gap: 20px;
       padding: 22px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
+    } */
 
     .info-item:first-child {
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .info-icon-wrap {
+    /* .info-icon-wrap {
       width: 42px;
       height: 42px;
       border: 1px solid var(--logo-color);
@@ -788,7 +888,7 @@ body {
       align-items: center;
       justify-content: center;
       opacity: 0.8;
-    }
+    } */
 
     .info-icon-wrap svg {
       width: 17px;
@@ -800,7 +900,7 @@ body {
       stroke-linejoin: round;
     }
 
-    .info-content h5 {
+    /* .info-content h5 {
       font-size: 16px;
       letter-spacing: 0.35em;
       text-transform: uppercase;
@@ -814,14 +914,14 @@ body {
       color: var(--heading-color);
       opacity: 0.72;
       line-height: 1.75;
-    }
+    } */
 
     /* social row */
-    .contact-social-row {
+    /* .contact-social-row {
       display: flex;
       gap: 12px;
       margin-bottom: 55px;
-    }
+    } */
 
     .contact-social-row a {
       width: 38px;
@@ -854,13 +954,13 @@ body {
     }
 
     /* ─── FORM ─── */
-    .form-section-heading {
+    /* .form-section-heading {
       font-size: 32px;
       font-weight: 300;
       color: var(--heading2-color);
       margin-bottom: 28px;
       letter-spacing: 0.02em;
-    }
+    } */
 
     .form-section-heading span {
       color: var(--logo-color);
@@ -1065,39 +1165,39 @@ body {
     }
 
     /* hours */
-    .hours-title {
+    /* .hours-title {
       font-size: 10px;
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--logo-color);
       margin: 30px 0 14px;
-    }
+    } */
 
-    .hours-row {
+    /* .hours-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 13px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    }
+    } */
 
     .hours-row:first-of-type {
       border-top: 1px solid rgba(255, 255, 255, 0.07);
     }
 
-    .hours-day {
+    /* .hours-day {
       font-size: 15px;
       font-weight: 300;
       opacity: 0.7;
-    }
+    } */
 
-    .hours-time {
+    /* .hours-time {
       font-size: 14px;
       color: var(--logo-color);
       letter-spacing: 0.04em;
-    }
+    } */
 
-    .hours-closed {
+    /* .hours-closed {
       font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -1105,7 +1205,7 @@ body {
       color: #0d0d0d;
       padding: 3px 9px;
       font-weight: 500;
-    }
+    } */
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1050px) {
@@ -1256,7 +1356,20 @@ body {
          <ul class="nav-links">
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
+          <!-- <li><a href="services.html">Services</a></li> -->
+           <li class="dropdown-menu-parent">
+  <a href="services.html">Services</a>
+
+  <ul class="custom-dropdown">
+    <li><a href="services.html#services-one">Painting Restoration</a></li>
+    <li><a href="services.html#services-two">Paper Conservation</a></li>
+    <li><a href="services.html#services-three">Preventive Conservation</a></li>
+    <li><a href="services.html#services-four">Mural Conservation</a></li>
+    <li><a href="services.html#services-five">Sculpture Restoration</a></li>
+    <li><a href="services.html#services-six">Collection Care</a></li>
+    <li><a href="services.html#services-seven">Condition Assessment</a></li>
+  </ul>
+</li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="news.html">Media</a></li>
           <li><a href="blogs.html">Blogs</a></li>
@@ -1300,44 +1413,7 @@ body {
     </section>
 
 
-    <style>
-      
 
-      /* .con-flex{
-        background: #7B5C4B;
-
-      } */
-      .map-parent{
-        height: auto;
-      }
-    .contact-parent{
-      height: auto;
-        /* height: 70%; */
-        margin-bottom: 20px;
-        /* border-radius: 10px; */
-
-    
-    }
-    .contact-img img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .form-parent{
-    padding:30px;
-          /* background:#7d7568 */
-              /* background:#d4d1c4; */
-
-    }
-    /* .contact-map-parent{
-      height: 100vh;
-
-    } */
-    
-
-
-
-</style>
 
 
 
@@ -1456,6 +1532,47 @@ body {
 
     
     </div>
+
+
+
+        <style>
+      
+
+      /* .con-flex{
+        background: #7B5C4B;
+
+      } */
+      .map-parent{
+        height: auto;
+      }
+    .contact-parent{
+      height: auto;
+        /* height: 70%; */
+        margin-bottom: 20px;
+        /* border-radius: 10px; */
+
+    
+    }
+    .contact-img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .form-parent{
+    padding:30px;
+          /* background:#7d7568 */
+              /* background:#d4d1c4; */
+
+    }
+    /* .contact-map-parent{
+      height: 100vh;
+
+    } */
+    
+
+
+
+</style>
 
 
 
