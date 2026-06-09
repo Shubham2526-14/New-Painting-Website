@@ -372,96 +372,78 @@ body {
 
     /* services drop down design */
 
-.custom-dropdown{
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(15px);
+  .custom-dropdown{
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(15px);
+      min-width: 280px;
+      padding: 14px 0;
+      background-color: var(--dark);
+      border-radius: 14px;
+      list-style: none;
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 15px 40px rgba(0,0,0,.18), 0 5px 15px rgba(0,0,0,.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all .35s ease;
+      z-index: 999;
+    }
+    .dropdown-menu-parent { position: relative; }
+    .dropdown-menu-parent:hover .custom-dropdown{
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(8px);
+    }
+    .custom-dropdown::before{
+      content:"";
+      position:absolute;
+      top:-8px;
+      left:50%;
+      width:16px;
+      height:16px;
+      background:var(--dark);
+      transform:translateX(-50%) rotate(45deg);
+    }
+    .custom-dropdown li a{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 22px;
+      color:#F7F0EA;
+      font-size:14px;
+      letter-spacing:.3px;
+      transition:.3s;
+    }
+    .custom-dropdown li a::before{
+      content:"✦";
+      color:#D5A749;
+      font-size:8px;
+      transition:.3s;
+    }
+    .custom-dropdown li{
+      border-bottom: 1px solid rgba(213, 166, 73, 0.192);
+    }
+    .custom-dropdown li:last-child{ border-bottom: none; }
+    .custom-dropdown li a:hover{
+      background:rgba(255,255,255,.06);
+      padding-left:30px;
+    }
+    .custom-dropdown li a:hover::before{ transform:rotate(180deg); }
 
-    min-width: 280px;
-    padding: 14px 0;
 
-          background-color: var(--dark);
-
-
-
-    border-radius: 14px;
-    list-style: none;
-
-    border: 1px solid rgba(255,255,255,.08);
-
-    box-shadow:
-    0 15px 40px rgba(0,0,0,.18),
-    0 5px 15px rgba(0,0,0,.1);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: all .35s ease;
-
-    z-index: 999;
+        .dropdown-link{
+  display:flex;
+  align-items:center;
+  gap:5px;
 }
 
-.dropdown-menu-parent:hover .custom-dropdown{
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(8px);
+.dropdown-arrow{
+  transition:transform .3s ease;
 }
 
-/* top arrow */
-.custom-dropdown::before{
-    content:"";
-    position:absolute;
-    top:-8px;
-    left:50%;
-    width:16px;
-    height:16px;
-    background:#7B5C4B;
-    transform:translateX(-50%) rotate(45deg);
-}
-
-
-
-.custom-dropdown li a{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    padding:14px 22px;
-
-    color:#F7F0EA;
-    font-size:14px;
-    letter-spacing:.3px;
-
-    transition:.3s;
-}
-
-/* Golden dot */
-.custom-dropdown li a::before{
-    content:"✦";
-    color:#D5A749;
-    font-size:8px;
-    transition:.3s;
-}
-
-.custom-dropdown li{
-    border-bottom: 1px solid rgba(213, 166, 73, 0.192);
-}
-
-.custom-dropdown li:last-child{
-    border-bottom: none;
-}
-
-/* Right arrow */
-
-
-.custom-dropdown li a:hover{
-    background:rgba(255,255,255,.06);
-    padding-left:30px;
-}
-
-.custom-dropdown li a:hover::before{
-    transform:rotate(180deg);
+.dropdown-menu-parent:hover .dropdown-arrow{
+  transform:rotate(180deg);
 }
 
     /* ─── FULLPAGE SECTIONS — account for navbar now being in-flow ─── */
@@ -991,7 +973,12 @@ body {
           <li><a href="about.html">About</a></li>
           <!-- <li><a href="services.html">Services</a></li> -->
            <li class="dropdown-menu-parent">
-  <a href="services.html">Services</a>
+<a href="services.html" class="dropdown-link">
+  Services
+  <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none">
+    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
 
   <ul class="custom-dropdown">
     <li><a href="services.html#services-one">Painting Restoration</a></li>

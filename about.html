@@ -372,98 +372,78 @@ body {
 
     /* services drop down design */
 
-.custom-dropdown{
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(15px);
+  .custom-dropdown{
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(15px);
+      min-width: 280px;
+      padding: 14px 0;
+      background-color: var(--dark);
+      border-radius: 14px;
+      list-style: none;
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 15px 40px rgba(0,0,0,.18), 0 5px 15px rgba(0,0,0,.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all .35s ease;
+      z-index: 999;
+    }
+    .dropdown-menu-parent { position: relative; }
+    .dropdown-menu-parent:hover .custom-dropdown{
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(8px);
+    }
+    .custom-dropdown::before{
+      content:"";
+      position:absolute;
+      top:-8px;
+      left:50%;
+      width:16px;
+      height:16px;
+      background:var(--dark);
+      transform:translateX(-50%) rotate(45deg);
+    }
+    .custom-dropdown li a{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 22px;
+      color:#F7F0EA;
+      font-size:14px;
+      letter-spacing:.3px;
+      transition:.3s;
+    }
+    .custom-dropdown li a::before{
+      content:"✦";
+      color:#D5A749;
+      font-size:8px;
+      transition:.3s;
+    }
+    .custom-dropdown li{
+      border-bottom: 1px solid rgba(213, 166, 73, 0.192);
+    }
+    .custom-dropdown li:last-child{ border-bottom: none; }
+    .custom-dropdown li a:hover{
+      background:rgba(255,255,255,.06);
+      padding-left:30px;
+    }
+    .custom-dropdown li a:hover::before{ transform:rotate(180deg); }
 
-    min-width: 280px;
-    padding: 14px 0;
-
-           background-color: var(--dark);
-
-
-
-    border-radius: 14px;
-    list-style: none;
-
-    border: 1px solid rgba(255,255,255,.08);
-
-    box-shadow:
-    0 15px 40px rgba(0,0,0,.18),
-    0 5px 15px rgba(0,0,0,.1);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: all .35s ease;
-
-    z-index: 999;
+        .dropdown-link{
+  display:flex;
+  align-items:center;
+  gap:5px;
 }
 
-.dropdown-menu-parent:hover .custom-dropdown{
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(8px);
+.dropdown-arrow{
+  transition:transform .3s ease;
 }
 
-/* top arrow */
-.custom-dropdown::before{
-    content:"";
-    position:absolute;
-    top:-8px;
-    left:50%;
-    width:16px;
-    height:16px;
-    background:#7B5C4B;
-    transform:translateX(-50%) rotate(45deg);
+.dropdown-menu-parent:hover .dropdown-arrow{
+  transform:rotate(180deg);
 }
-
-
-
-.custom-dropdown li a{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    padding:14px 22px;
-
-    color:#F7F0EA;
-    font-size:14px;
-    letter-spacing:.3px;
-
-    transition:.3s;
-}
-
-/* Golden dot */
-.custom-dropdown li a::before{
-    content:"✦";
-    color:#D5A749;
-    font-size:8px;
-    transition:.3s;
-}
-
-.custom-dropdown li{
-     border-bottom: 1px solid rgba(213, 166, 73, 0.192);
-}
-
-.custom-dropdown li:last-child{
-    border-bottom: none;
-}
-
-/* Right arrow */
-
-
-.custom-dropdown li a:hover{
-    background:rgba(255,255,255,.06);
-    padding-left:30px;
-}
-
-.custom-dropdown li a:hover::before{
-    transform:rotate(180deg);
-}
-
 
 
 
@@ -481,7 +461,7 @@ body {
     /* ─── SECTION 1: HERO ─── */
     #sec-hero {
       height: 100vh;
-      background-image: url('images/shesrig010A8945.jpeg');
+      background-image: url('./images/Photos/about\ 16.jpeg');
       background-size: cover;
       background-position: center;
       flex-direction: column;
@@ -1364,8 +1344,12 @@ body {
           <li><a href="about.html">About</a></li>
           <!-- <li><a href="services.html">Services</a></li> -->
            <li class="dropdown-menu-parent">
-  <a href="services.html">Services</a>
-
+<a href="services.html" class="dropdown-link">
+  Services
+  <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none">
+    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
   <ul class="custom-dropdown">
     <li><a href="services.html#services-one">Painting Restoration</a></li>
     <li><a href="services.html#services-two">Paper Conservation</a></li>
@@ -1444,6 +1428,8 @@ body {
 
           </div>
         </div>
+
+        
 
 
         <div class="banner-section">
@@ -1594,7 +1580,7 @@ body {
           </div>
           <div class="ceo-right">
             <div class="ceo-img">
-              <img src="./images/author.avif" alt="">
+              <img src="./images/Photos/about 7.jpg" alt="">
             </div>
           </div>
         </div>
@@ -1665,6 +1651,8 @@ body {
         width: 100%;
         height: 100%;
         object-fit: cover;
+            max-height: 600px; 
+
       }
 
       .ceo-second-para {
@@ -1732,7 +1720,7 @@ body {
 
             <!-- Card 1 -->
             <div class="team-card" data-accent="lime">
-              <img class="card-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85"
+              <img class="card-photo" src="./images/Photos/about 2.jpg"
                 alt="Arjun Mehta" />
               <div class="card-overlay"></div>
               <div class="card-stripe"></div>
@@ -1758,7 +1746,7 @@ body {
 
             <!-- Card 2 -->
             <div class="team-card" data-accent="coral">
-              <img class="card-photo" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85"
+              <img class="card-photo" src="./images/Photos/about 5.jpg"
                 alt="Sofia Reyes" />
               <div class="card-overlay"></div>
               <div class="card-stripe"></div>
@@ -1784,7 +1772,7 @@ body {
 
             <!-- Card 3 -->
             <div class="team-card" data-accent="ice">
-              <img class="card-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=85"
+              <img class="card-photo" src="./images/Photos/about 6.jpg"
                 alt="Leo Braun" />
               <div class="card-overlay"></div>
               <div class="card-stripe"></div>
@@ -1809,7 +1797,199 @@ body {
 
             <!-- Card 4 -->
             <div class="team-card" data-accent="coral">
-              <img class="card-photo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=85"
+              <img class="card-photo" src="./images/Photos/about 8.jpg"
+                alt="Mia Chen" />
+              <div class="card-overlay"></div>
+              <div class="card-stripe"></div>
+              <span class="card-num">04</span>
+              <div class="card-body">
+                <!-- <p class="card-role">Growth & Strategy</p> -->
+                <h3 class="card-name">Mia Chen</h3>
+                <p class="card-bio">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                </p>
+                <!-- <div class="card-socials">
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg></a>
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                    </svg></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="team-card" data-accent="coral">
+              <img class="card-photo" src="./images/Photos/about 10.jpg"
+                alt="Mia Chen" />
+              <div class="card-overlay"></div>
+              <div class="card-stripe"></div>
+              <span class="card-num">04</span>
+              <div class="card-body">
+                <!-- <p class="card-role">Growth & Strategy</p> -->
+                <h3 class="card-name">Mia Chen</h3>
+                <p class="card-bio">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                </p>
+                <!-- <div class="card-socials">
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg></a>
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                    </svg></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="team-card" data-accent="coral">
+              <img class="card-photo" src="./images/Photos/about 11.jpg"
+                alt="Mia Chen" />
+              <div class="card-overlay"></div>
+              <div class="card-stripe"></div>
+              <span class="card-num">04</span>
+              <div class="card-body">
+                <!-- <p class="card-role">Growth & Strategy</p> -->
+                <h3 class="card-name">Mia Chen</h3>
+                <p class="card-bio">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                </p>
+                <!-- <div class="card-socials">
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg></a>
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                    </svg></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="team-card" data-accent="coral">
+              <img class="card-photo" src="./images/Photos/about 12.jpg"
+                alt="Mia Chen" />
+              <div class="card-overlay"></div>
+              <div class="card-stripe"></div>
+              <span class="card-num">04</span>
+              <div class="card-body">
+                <!-- <p class="card-role">Growth & Strategy</p> -->
+                <h3 class="card-name">Mia Chen</h3>
+                <p class="card-bio">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                </p>
+                <!-- <div class="card-socials">
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg></a>
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                    </svg></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="team-card" data-accent="coral">
+              <img class="card-photo" src="./images/Photos/about 13.jpg"
+                alt="Mia Chen" />
+              <div class="card-overlay"></div>
+              <div class="card-stripe"></div>
+              <span class="card-num">04</span>
+              <div class="card-body">
+                <!-- <p class="card-role">Growth & Strategy</p> -->
+                <h3 class="card-name">Mia Chen</h3>
+                <p class="card-bio">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                </p>
+                <!-- <div class="card-socials">
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg></a>
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                    </svg></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="team-card" data-accent="coral">
+              <img class="card-photo" src="./images/Photos/about 14.jpg"
+                alt="Mia Chen" />
+              <div class="card-overlay"></div>
+              <div class="card-stripe"></div>
+              <span class="card-num">04</span>
+              <div class="card-body">
+                <!-- <p class="card-role">Growth & Strategy</p> -->
+                <h3 class="card-name">Mia Chen</h3>
+                <p class="card-bio">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                </p>
+                <!-- <div class="card-socials">
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg></a>
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                    </svg></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="team-card" data-accent="coral">
+              <img class="card-photo" src="./images/Photos/about 15.jpg"
+                alt="Mia Chen" />
+              <div class="card-overlay"></div>
+              <div class="card-stripe"></div>
+              <span class="card-num">04</span>
+              <div class="card-body">
+                <!-- <p class="card-role">Growth & Strategy</p> -->
+                <h3 class="card-name">Mia Chen</h3>
+                <p class="card-bio">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                </p>
+                <!-- <div class="card-socials">
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg></a>
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                    </svg></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="team-card" data-accent="coral">
+              <img class="card-photo" src="./images/Photos/about 3.jpg"
+                alt="Mia Chen" />
+              <div class="card-overlay"></div>
+              <div class="card-stripe"></div>
+              <span class="card-num">04</span>
+              <div class="card-body">
+                <!-- <p class="card-role">Growth & Strategy</p> -->
+                <h3 class="card-name">Mia Chen</h3>
+                <p class="card-bio">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                </p>
+                <!-- <div class="card-socials">
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg></a>
+                  <a href="#"><svg viewBox="0 0 24 24">
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                    </svg></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="team-card" data-accent="coral">
+              <img class="card-photo" src="./images/Photos/about 4.jpg"
                 alt="Mia Chen" />
               <div class="card-overlay"></div>
               <div class="card-stripe"></div>
@@ -2402,7 +2582,7 @@ body {
     </style>
 
 
-
+<img src="./images/Photos/about 21.jpg" alt="" style="height:14px;">
 
 
 
@@ -2424,11 +2604,11 @@ body {
 
       const SLIDES = [
 
-        { src: './images/Photos/0U5A6535.webp' },
-        { src: './images/Photos/0U5A5305.webp' },
-        { src: './images/Photos/0U5A6660.webp' },
-        { src: './images/Photos/0U5A6664.webp' },
-        { src: './images/Photos/0U5A6666.webp' },
+        { src: './images/Photos/about 20.jpg' },
+        { src: './images/Photos/about 21.jpg' },
+        { src: './images/Photos/about 18.jpg' },
+        { src: './images/Photos/about 1.jpg' },
+        { src: './images/Photos/about 17.jpg' },
         { src: './images/Photos/0U5A6669.webp' }
 
       ];
