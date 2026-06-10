@@ -55,6 +55,10 @@ body {
       font-style: italic;
       color: var(--dark);
     }
+    p{
+      margin-bottom: 0;
+      margin-top: 0;
+    }
 
     a {
       text-decoration: none;
@@ -789,20 +793,28 @@ body {
       margin-bottom: 24px;
     }
 
-    .sec-header .section-eyebrow {
+    /* .sec-header .section-eyebrow {
       margin-bottom: 6px;
-    }
+    } */
 
     .sec-header .section-heading {
       font-size: clamp(36px, 3.5vw, 56px);
     }
 
-    .sec-header .section-para {
+    /* .sec-header .section-para {
       font-size: 14px;
       color: var(--muted);
       max-width: 500px;
       margin: 0 auto;
-    }
+    } */
+     .section-para {
+          font-size: clamp(13px, 1.2vw, 15px);
+    color: var(--muted);
+    line-height: 1.85;
+    /* margin-bottom: 32px; */
+}
+     
+
 
     /* ─── RESPONSIVE ─── */
     @media (max-width:991px) {
@@ -1434,7 +1446,7 @@ body {
 
           <div class="about-us-para">
 
-            <p class="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio cumque esse, fugit excepturi
+            <p class="section-para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio cumque esse, fugit excepturi
               eaque quos? Sed earum non cum temporibus tenetur esse exercitationem laboriosam, sint fugiat. Laboriosam
               magni perferendis sint.
               Sint natus, necessitatibus ipsa iste odit dolor architecto rem a doloribus similique sapiente sit
@@ -1460,7 +1472,7 @@ body {
         <div class="padding">
           <div class="about-us-para">
 
-            <p class="para"> Laboriosam magni perferendis sint. Sint natus, necessitatibus ipsa iste odit dolor
+            <p class=" section-para"> Laboriosam magni perferendis sint. Sint natus, necessitatibus ipsa iste odit dolor
               architecto rem a doloribus similique sapiente sit voluptatibus odio nihil totam vero. Blanditiis fugit
               cumque sint numquam commodi excepturi magnam quam odit iusto. Id ratione, sed sequi totam ipsa voluptates
               placeat? Voluptatibus aut veritatis earum, delectus unde illum. Error quam fuga omnis voluptatibus
@@ -1480,7 +1492,7 @@ body {
 
 
       .about-us-parent {
-        margin-top: 50px;
+        /* margin-top: 30px; */
         margin-bottom: 150px;
       }
 
@@ -1577,7 +1589,7 @@ body {
                 <h3 class="short-heading" style="text-align: center;">Meet The Founder</h3>
               </div>
               <div class="ceo-para">
-                <p class="para">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur, a molestias facere
+                <p class="section-para">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur, a molestias facere
                   ipsum quaerat,</p>
                 <p class="para ceo-second-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
                   neque dicta nobis, sapiente reprehenderit unde non esse, laborum sed, earum at tempore commodi.
@@ -1587,7 +1599,7 @@ body {
                 <h4 class="small-heading" style="text-align: center;">
                   My Name is Mark Twain
                 </h4>
-                <p class="para">
+                <p class=" section-para">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, autem provident atque, perspiciatis
                   animi incidunt, quae ipsum saepe possimus dolorem est corrupti dolore cumque culpa laborum suscipit
                   dicta molestiae labore.
@@ -1742,7 +1754,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Chief Executive</p> -->
                 <h3 class="card-name">Arjun Mehta</h3>
-                <p class="card-bio para">Turns wild ideas into products people actually use. Formerly broke, now building.
+                <p class="card-bio section-para">Turns wild ideas into products people actually use. Formerly broke, now building.
                 </p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
@@ -1768,7 +1780,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Creative Director</p> -->
                 <h3 class="card-name">Sofia Reyes</h3>
-                <p class="card-bio para">Pixels are her love language. Believes every border-radius is a moral decision.</p>
+                <p class="card-bio section-para">Pixels are her love language. Believes every border-radius is a moral decision.</p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
                       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -1794,7 +1806,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Lead Engineer</p> -->
                 <h3 class="card-name">Leo Braun</h3>
-                <p class="card-bio para">Writes code that reads like poetry. Debugging is just a form of meditation to him.
+                <p class="card-bio section-para">Writes code that reads like poetry. Debugging is just a form of meditation to him.
                 </p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
@@ -1819,7 +1831,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Growth & Strategy</p> -->
                 <h3 class="card-name">Mia Chen</h3>
-                <p class="card-bio para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                <p class="card-bio section-para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
                 </p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
@@ -1843,7 +1855,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Growth & Strategy</p> -->
                 <h3 class="card-name">Mia Chen</h3>
-                <p class="card-bio para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                <p class="card-bio section-para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
                 </p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
@@ -1867,7 +1879,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Growth & Strategy</p> -->
                 <h3 class="card-name">Mia Chen</h3>
-                <p class="card-bio para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                <p class="card-bio section-para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
                 </p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
@@ -1891,7 +1903,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Growth & Strategy</p> -->
                 <h3 class="card-name">Mia Chen</h3>
-                <p class="card-bio para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                <p class="card-bio section-para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
                 </p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
@@ -1915,7 +1927,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Growth & Strategy</p> -->
                 <h3 class="card-name">Mia Chen</h3>
-                <p class="card-bio para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                <p class="card-bio section-para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
                 </p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
@@ -1939,7 +1951,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Growth & Strategy</p> -->
                 <h3 class="card-name">Mia Chen</h3>
-                <p class="card-bio para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                <p class="card-bio section-para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
                 </p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
@@ -1964,7 +1976,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Growth & Strategy</p> -->
                 <h3 class="card-name">Mia Chen</h3>
-                <p class="card-bio para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                <p class="card-bio section-para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
                 </p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
@@ -1988,7 +2000,7 @@ body {
               <div class="card-body">
                 <!-- <p class="card-role">Growth & Strategy</p> -->
                 <h3 class="card-name">Mia Chen</h3>
-                <p class="card-bio para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
+                <p class="card-bio section-para">Numbers talk; she listens. Converts spreadsheets into strategies that actually win.
                 </p>
                 <!-- <div class="card-socials">
                   <a href="#"><svg viewBox="0 0 24 24">
@@ -2113,7 +2125,7 @@ body {
 
       .carousel-viewport {
         overflow: hidden;
-        padding: 50px 0px;
+        padding: 20px 0px;
       }
 
 .carousel-track {
@@ -2232,7 +2244,7 @@ body {
 
       .card-name {
         /* font-family: 'Bebas Neue', sans-serif; */
-        font-size: 33px;
+        font-size: 30px;
         letter-spacing: 0.04em;
         line-height: 1;
         color: var(--heading2-color);
@@ -2573,7 +2585,6 @@ body {
     </style>
 
 
-<img src="./images/Photos/about 21.jpg" alt="" style="height:14px;">
 
 
 
